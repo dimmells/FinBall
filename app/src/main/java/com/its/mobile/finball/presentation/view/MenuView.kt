@@ -15,4 +15,13 @@ interface MenuView: BaseMvpView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun setupChart(entries: MutableList<PieEntry>)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToRevenue()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToCosts()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToAnalytic()
 }

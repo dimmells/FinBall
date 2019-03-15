@@ -2,7 +2,6 @@ package com.its.mobile.finball.ui.fragment
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -11,21 +10,20 @@ import android.widget.RelativeLayout
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.interfaces.datasets.IPieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.its.mobile.finball.R
 import com.its.mobile.finball.di.ApplicationLoader
 import com.its.mobile.finball.di.module.MenuModule
 import com.its.mobile.finball.presentation.presenter.MenuPresenter
 import com.its.mobile.finball.presentation.view.MenuView
+import com.its.mobile.finball.ui.navigation.MainRouter
 import kotlinx.android.synthetic.main.fragment_menu.*
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.formatter.PercentFormatter
 
 
-class MenuFragment: BaseFragment(), MenuView {
+class MenuFragment : BaseFragment(), MenuView {
 
     companion object {
         fun newInstance(): MenuFragment = MenuFragment()
@@ -40,10 +38,14 @@ class MenuFragment: BaseFragment(), MenuView {
         .providePresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_menu, container, false)
+        inflater.inflate(R.layout.fragment_menu, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        button_menu_revenue.setOnClickListener { menuPresenter.onRevenueClicked() }
+        button_menu_costs.setOnClickListener { menuPresenter.onCostsClicked() }
+        button_menu_analytic.setOnClickListener { menuPresenter.onAnalyticClicked() }
     }
 
 
@@ -88,7 +90,17 @@ class MenuFragment: BaseFragment(), MenuView {
         pie_chart_menu_correlation.layoutParams = params
     }
 
-    override fun setQuote(quote: String) { text_view_menu_quote.text = quote }
+    override fun setQuote(quote: String) {
+        text_view_menu_quote.text = quote
+    }
 
-    override fun setAuthor(author: String) { text_view_menu_quote_author.text = author }
+    override fun setAuthor(author: String) {
+        text_view_menu_quote_author.text = author
+    }
+
+    override fun navigateToRevenue() = (router as MainRouter).navigateToRevenueCategory()
+
+    override fun navigateToCosts() = (router as MainRouter).navigateToCostsCategory()
+
+    override fun navigateToAnalytic() {}
 }

@@ -18,4 +18,10 @@ class MenuPresenter(private val menuInteract: MenuInteract): BaseMvpPresenter<Me
         val costs = 1000f
         return mutableListOf(PieEntry(revenue, "$revenue"), PieEntry(costs, "$costs"))
     }
+
+    fun onRevenueClicked() = viewState.navigateToRevenue()
+
+    fun onCostsClicked() = viewState.navigateToCosts()
+
+    fun onAnalyticClicked() = viewState.navigateToAnalytic()
 }
