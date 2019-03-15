@@ -22,6 +22,8 @@ interface ApplicationComponent {
 
     fun costsCategoryComponent(costsCategoryModule: CostsCategoryModule): CostsCategoryComponent
 
+    fun inputRevenueComponent(inputRevenueModule: InputRevenueModule): InputRevenueComponent
+
 }
 
 

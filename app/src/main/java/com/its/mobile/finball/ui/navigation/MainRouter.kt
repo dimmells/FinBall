@@ -7,4 +7,6 @@ interface MainRouter: BaseRouter {
     fun navigateToRevenueCategory()
 
     fun navigateToCostsCategory()
+
+    fun navigateToInputRevenue(categoryId: Int)
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+            android:id="@+id/layout_input_revenue_toolbar"
+            layout="@layout/layout_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+            android:id="@+id/edit_text_input_revenue_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"/>
+
+    <TextView
+            android:id="@+id/text_view_input_revenue_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="categoryName"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"/>
+
+    <Button
+            android:id="@+id/button_input_revenue_add"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorAccent"
+            android:text="Add"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    <android.support.constraint.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            app:layout_constraintGuide_percent="0.5"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -13,6 +13,7 @@ import com.its.mobile.finball.di.module.RevenueCategoryModule
 import com.its.mobile.finball.presentation.presenter.RevenueCategoryPresenter
 import com.its.mobile.finball.presentation.view.RevenueCategoryView
 import com.its.mobile.finball.ui.adapter.CategoryRecyclerAdapter
+import com.its.mobile.finball.ui.navigation.MainRouter
 import kotlinx.android.synthetic.main.fragment_revenue_category.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 
@@ -43,8 +44,8 @@ class RevenueCategoryFragment: BaseFragment(), RevenueCategoryView {
         categoryRecyclerAdapter = CategoryRecyclerAdapter(revenueCategoryPresenter, revenueCategoryPresenter)
         setupCategoryRecyclerList()
 
-        layout_revenue_category_toolbar.text_view_toolbar_title.text = "Revenue Category"
-        layout_revenue_category_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
+        layout_input_revenue_toolbar.text_view_toolbar_title.text = "Revenue Category"
+        layout_input_revenue_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
     }
 
     private fun setupCategoryRecyclerList() {
@@ -54,5 +55,5 @@ class RevenueCategoryFragment: BaseFragment(), RevenueCategoryView {
         }
     }
 
-    override fun navigateToInputRevenueAmount(categoryId: Int) {}
+    override fun navigateToInputRevenueAmount(categoryId: Int) = (router as MainRouter).navigateToInputRevenue(categoryId)
 }

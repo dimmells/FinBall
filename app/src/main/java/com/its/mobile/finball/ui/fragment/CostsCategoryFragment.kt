@@ -10,11 +10,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.its.mobile.finball.R
 import com.its.mobile.finball.di.ApplicationLoader
 import com.its.mobile.finball.di.module.CostsCategoryModule
-import com.its.mobile.finball.di.module.RevenueCategoryModule
 import com.its.mobile.finball.presentation.presenter.CostsCategoryPresenter
-import com.its.mobile.finball.presentation.presenter.RevenueCategoryPresenter
 import com.its.mobile.finball.presentation.view.CostsCategoryView
-import com.its.mobile.finball.presentation.view.RevenueCategoryView
 import com.its.mobile.finball.ui.adapter.CategoryRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_revenue_category.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
@@ -46,8 +43,8 @@ class CostsCategoryFragment: BaseFragment(), CostsCategoryView {
         categoryRecyclerAdapter = CategoryRecyclerAdapter(revenueCategoryPresenter, revenueCategoryPresenter)
         setupCategoryRecyclerList()
 
-        layout_revenue_category_toolbar.text_view_toolbar_title.text = "Costs Category"
-        layout_revenue_category_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
+        layout_input_revenue_toolbar.text_view_toolbar_title.text = "Costs Category"
+        layout_input_revenue_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
     }
 
     private fun setupCategoryRecyclerList() {
