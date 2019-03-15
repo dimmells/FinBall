@@ -50,4 +50,7 @@ dependencies {
     //Moxy
     implementation "com.arello-mobile:moxy-app-compat:$rootProject.ext.moxy_version"
     kapt "com.arello-mobile:moxy-compiler:$rootProject.ext.moxy_version"
+
+    //Charts
+    implementation "com.github.PhilJay:MPAndroidChart:$rootProject.ext.mpchart_version"
 }

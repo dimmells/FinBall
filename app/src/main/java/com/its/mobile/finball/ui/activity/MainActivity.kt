@@ -11,6 +11,7 @@ import com.its.mobile.finball.di.ApplicationLoader
 import com.its.mobile.finball.di.module.MainActivityModule
 import com.its.mobile.finball.presentation.presenter.MainPresenter
 import com.its.mobile.finball.presentation.view.MainView
+import com.its.mobile.finball.ui.fragment.MenuFragment
 import com.its.mobile.finball.ui.navigation.MainRouter
 
 class MainActivity: BaseActivity(), MainView, MainRouter {
@@ -27,6 +28,8 @@ class MainActivity: BaseActivity(), MainView, MainRouter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    override fun navigateToMenu() = setFragment(MenuFragment.newInstance(), false)
 
     private fun setFragment(fragment: Fragment, addToBackStack: Boolean, menuAnimation: Boolean = false) {
         supportFragmentManager.beginTransaction()

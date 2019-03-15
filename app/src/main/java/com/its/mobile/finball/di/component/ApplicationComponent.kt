@@ -2,6 +2,7 @@ package com.its.mobile.finball.di.component
 
 import com.its.mobile.finball.di.module.ApplicationModule
 import com.its.mobile.finball.di.module.MainActivityModule
+import com.its.mobile.finball.di.module.MenuModule
 import com.its.mobile.finball.di.scope.ApplicationScope
 import dagger.Component
 
@@ -14,6 +15,8 @@ import dagger.Component
 interface ApplicationComponent {
 
     fun mainActivityComponent(mainActivityModule: MainActivityModule): MainActivityComponent
+
+    fun menuComponent(menuModule: MenuModule): MenuComponent
 
 }
 

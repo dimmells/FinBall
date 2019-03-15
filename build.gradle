@@ -13,6 +13,8 @@ buildscript {
 
         dagger_version = '2.20'
         moxy_version = '1.5.5'
+
+        mpchart_version = 'v3.0.3'
     }
 
     repositories {
@@ -32,7 +34,9 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 

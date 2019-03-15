@@ -7,4 +7,7 @@ interface MainView : BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showToast(text: String)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToMenu()
 }
