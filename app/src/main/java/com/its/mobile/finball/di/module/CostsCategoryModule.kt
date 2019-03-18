@@ -1,6 +1,6 @@
 package com.its.mobile.finball.di.module
 
-import com.its.mobile.finball.data.CostsCategoryManager
+import com.its.mobile.finball.data.category.CostsCategoryManager
 import com.its.mobile.finball.di.scope.ViewScope
 import com.its.mobile.finball.interact.CostsCategoryInteract
 import com.its.mobile.finball.presentation.presenter.CostsCategoryPresenter

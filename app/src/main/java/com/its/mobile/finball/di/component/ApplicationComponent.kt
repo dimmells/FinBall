@@ -8,7 +8,8 @@ import dagger.Component
         modules = [
             ApplicationModule::class,
             RevenueCategoryManagerModule::class,
-            CostsCategoryManagerModule::class
+            CostsCategoryManagerModule::class,
+            DatabaseModule::class
         ]
 )
 @ApplicationScope

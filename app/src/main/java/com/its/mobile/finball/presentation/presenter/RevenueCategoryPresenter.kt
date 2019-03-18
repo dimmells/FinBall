@@ -1,7 +1,7 @@
 package com.its.mobile.finball.presentation.presenter
 
 import com.arellomobile.mvp.InjectViewState
-import com.its.mobile.finball.data.CategoryEntity
+import com.its.mobile.finball.data.category.CategoryEntity
 import com.its.mobile.finball.interact.RevenueCategoryInteract
 import com.its.mobile.finball.presentation.adapter.CategoryAdapterContract
 import com.its.mobile.finball.presentation.view.RevenueCategoryView

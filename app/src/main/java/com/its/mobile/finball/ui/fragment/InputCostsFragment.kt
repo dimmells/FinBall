@@ -2,6 +2,8 @@ package com.its.mobile.finball.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,11 +57,23 @@ class InputCostsFragment: BaseFragment(), InputCostsView {
         inputCostsPresenter.onStart(categoryId)
 
         text_view_toolbar_title.text = "Costs"
+        button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
 
+        edit_text_input_revenue_amount.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.toString().matches(Regex("^0"))) { edit_text_input_revenue_amount.text.delete(0,1) }
+            }
+        })
         edit_text_input_revenue_amount.requestFocus()
         val inputManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         inputManager?.showSoftInput(edit_text_input_revenue_amount, InputMethodManager.SHOW_IMPLICIT)
+
+        button_input_revenue_add.setOnClickListener { inputCostsPresenter.onSaveClick(edit_text_input_revenue_amount.text.toString().toFloat()) }
     }
 
     override fun setCategoryName(stringResId: Int) { text_view_input_revenue_category.text = context?.getString(stringResId) }
+
+    override fun goBack() { fragmentManager?.popBackStack() }
 }

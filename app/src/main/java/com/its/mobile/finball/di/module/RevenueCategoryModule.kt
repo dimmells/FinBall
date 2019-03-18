@@ -1,6 +1,6 @@
 package com.its.mobile.finball.di.module
 
-import com.its.mobile.finball.data.RevenueCategoryManager
+import com.its.mobile.finball.data.category.RevenueCategoryManager
 import com.its.mobile.finball.di.scope.ViewScope
 import com.its.mobile.finball.interact.RevenueCategoryInteract
 import com.its.mobile.finball.presentation.presenter.RevenueCategoryPresenter

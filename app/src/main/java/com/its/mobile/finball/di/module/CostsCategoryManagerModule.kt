@@ -1,6 +1,6 @@
 package com.its.mobile.finball.di.module
 
-import com.its.mobile.finball.data.CostsCategoryManager
+import com.its.mobile.finball.data.category.CostsCategoryManager
 import com.its.mobile.finball.di.scope.ApplicationScope
 import dagger.Module
 import dagger.Provides
@@ -10,5 +10,6 @@ class CostsCategoryManagerModule {
 
     @Provides
     @ApplicationScope
-    fun provideRevenueCategoryManager(): CostsCategoryManager = CostsCategoryManager()
+    fun provideRevenueCategoryManager(): CostsCategoryManager =
+        CostsCategoryManager()
 }

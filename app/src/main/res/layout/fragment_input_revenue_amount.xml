@@ -16,7 +16,7 @@
             android:id="@+id/edit_text_input_revenue_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal|numberSigned"
             android:background="@null"
             android:textSize="32sp"
             android:hint="0"
