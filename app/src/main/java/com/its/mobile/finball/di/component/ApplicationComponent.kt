@@ -24,6 +24,8 @@ interface ApplicationComponent {
 
     fun inputRevenueComponent(inputRevenueModule: InputRevenueModule): InputRevenueComponent
 
+    fun inputCostsComponent(inputCostsModule: InputCostsModule): InputCostsComponent
+
 }
 
 

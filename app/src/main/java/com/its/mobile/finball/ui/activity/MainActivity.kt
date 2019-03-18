@@ -11,10 +11,7 @@ import com.its.mobile.finball.di.ApplicationLoader
 import com.its.mobile.finball.di.module.MainActivityModule
 import com.its.mobile.finball.presentation.presenter.MainPresenter
 import com.its.mobile.finball.presentation.view.MainView
-import com.its.mobile.finball.ui.fragment.CostsCategoryFragment
-import com.its.mobile.finball.ui.fragment.InputRevenueFragment
-import com.its.mobile.finball.ui.fragment.MenuFragment
-import com.its.mobile.finball.ui.fragment.RevenueCategoryFragment
+import com.its.mobile.finball.ui.fragment.*
 import com.its.mobile.finball.ui.navigation.MainRouter
 
 class MainActivity: BaseActivity(), MainView, MainRouter {
@@ -38,7 +35,9 @@ class MainActivity: BaseActivity(), MainView, MainRouter {
 
     override fun navigateToCostsCategory() = setFragment(CostsCategoryFragment.newInstance(), true, true)
 
-    override fun navigateToInputRevenue(categoryId: Int) = setFragment(InputRevenueFragment.newInstance(), true, true)
+    override fun navigateToInputRevenue(categoryId: Int) = setFragment(InputRevenueFragment.newInstance(categoryId), true, true)
+
+    override fun navigateToInputCosts(categoryId: Int) = setFragment(InputCostsFragment.newInstance(categoryId), true, true)
 
     private fun setFragment(fragment: Fragment, addToBackStack: Boolean, menuAnimation: Boolean = false) {
         supportFragmentManager.beginTransaction()

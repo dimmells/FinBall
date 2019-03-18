@@ -1,5 +1,6 @@
 package com.its.mobile.finball.di.module
 
+import com.its.mobile.finball.data.RevenueCategoryManager
 import com.its.mobile.finball.di.scope.ViewScope
 import com.its.mobile.finball.interact.InputRevenueInteract
 import com.its.mobile.finball.presentation.presenter.InputRevenuePresenter
@@ -11,7 +12,7 @@ class InputRevenueModule {
 
     @Provides
     @ViewScope
-    fun provideInputRevenueInteract(): InputRevenueInteract = InputRevenueInteract()
+    fun provideInputRevenueInteract(revenueCategoryManager: RevenueCategoryManager): InputRevenueInteract = InputRevenueInteract(revenueCategoryManager)
 
     @Provides
     @ViewScope

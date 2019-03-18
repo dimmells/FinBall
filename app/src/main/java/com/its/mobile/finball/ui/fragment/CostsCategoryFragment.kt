@@ -13,6 +13,7 @@ import com.its.mobile.finball.di.module.CostsCategoryModule
 import com.its.mobile.finball.presentation.presenter.CostsCategoryPresenter
 import com.its.mobile.finball.presentation.view.CostsCategoryView
 import com.its.mobile.finball.ui.adapter.CategoryRecyclerAdapter
+import com.its.mobile.finball.ui.navigation.MainRouter
 import kotlinx.android.synthetic.main.fragment_revenue_category.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 
@@ -54,5 +55,5 @@ class CostsCategoryFragment: BaseFragment(), CostsCategoryView {
         }
     }
 
-    override fun navigateToInputCostsAmount(categoryId: Int) {}
+    override fun navigateToInputCostsAmount(categoryId: Int) { (router as MainRouter).navigateToInputCosts(categoryId) }
 }

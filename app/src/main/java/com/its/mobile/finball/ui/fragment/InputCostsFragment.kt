@@ -9,23 +9,23 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.its.mobile.finball.R
 import com.its.mobile.finball.di.ApplicationLoader
-import com.its.mobile.finball.di.module.InputRevenueModule
-import com.its.mobile.finball.presentation.presenter.InputRevenuePresenter
-import com.its.mobile.finball.presentation.view.InputRevenueView
 import kotlinx.android.synthetic.main.fragment_input_revenue_amount.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import android.view.inputmethod.InputMethodManager
+import com.its.mobile.finball.di.module.InputCostsModule
+import com.its.mobile.finball.presentation.presenter.InputCostsPresenter
+import com.its.mobile.finball.presentation.view.InputCostsView
 
-class InputRevenueFragment: BaseFragment(), InputRevenueView {
+class InputCostsFragment: BaseFragment(), InputCostsView {
 
     companion object {
 
-        const val KEY_CATEGORY_ID = "categoryId"
+        const val KEY_COSTS_CATEGORY_ID = "costsCategoryId"
 
-        fun newInstance(categoryId: Int): InputRevenueFragment {
+        fun newInstance(categoryId: Int): InputCostsFragment {
             val args = Bundle()
-            val fragment = InputRevenueFragment()
-            args.putInt(KEY_CATEGORY_ID, categoryId)
+            val fragment = InputCostsFragment()
+            args.putInt(KEY_COSTS_CATEGORY_ID, categoryId)
             fragment.arguments = args
             return fragment
         }
@@ -34,16 +34,16 @@ class InputRevenueFragment: BaseFragment(), InputRevenueView {
     private var categoryId: Int = 0
 
     @InjectPresenter
-    lateinit var inputRevenuePresenter: InputRevenuePresenter
+    lateinit var inputCostsPresenter: InputCostsPresenter
 
     @ProvidePresenter
-    fun providePresenter(): InputRevenuePresenter = ApplicationLoader.applicationComponent
-        .inputRevenueComponent(InputRevenueModule())
+    fun providePresenter(): InputCostsPresenter = ApplicationLoader.applicationComponent
+        .inputCostsComponent(InputCostsModule())
         .providePresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { args -> categoryId = args.getInt(KEY_CATEGORY_ID) }
+        arguments?.let { args -> categoryId = args.getInt(KEY_COSTS_CATEGORY_ID) }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -52,9 +52,9 @@ class InputRevenueFragment: BaseFragment(), InputRevenueView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        inputRevenuePresenter.onStart(categoryId)
+        inputCostsPresenter.onStart(categoryId)
 
-        text_view_toolbar_title.text = "Revenue"
+        text_view_toolbar_title.text = "Costs"
 
         edit_text_input_revenue_amount.requestFocus()
         val inputManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
