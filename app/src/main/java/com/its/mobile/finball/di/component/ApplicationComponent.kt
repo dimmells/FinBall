@@ -27,6 +27,14 @@ interface ApplicationComponent {
 
     fun inputCostsComponent(inputCostsModule: InputCostsModule): InputCostsComponent
 
+    fun analyticPagerComponent(analyticPagerModule: AnalyticPagerModule): AnalyticPagerComponent
+
+    fun diagramSliderComponent(diagramSliderModule: DiagramSliderModule): DiagramSliderComponent
+
+    fun categoryRatingSliderComponent(categoryRatingSliderModule: CategoryRatingSliderModule): CategoryRatingSliderComponent
+
+    fun moneyBoxComponent(moneyBoxModule: MoneyBoxModule): MoneyBoxComponent
+
 }
 
 

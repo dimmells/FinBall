@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include
+            android:id="@+id/layout_analytic_pager_toolbar"
+            layout="@layout/layout_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.its.mobile.finball.ui.element.ViewPagerWithoutSwipe
+            android:id="@+id/view_pager_analytic_pager_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/layout_analytic_pager_toolbar"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view_analytic_pager_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation_view_analytic_pager_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#fafafa"
+            app:itemIconSize="32dp"
+            app:itemIconTint="@drawable/analytic_pager_bottom_navigation_selector"
+            app:menu="@menu/menu_analytic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+</android.support.constraint.ConstraintLayout>

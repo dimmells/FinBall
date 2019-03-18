@@ -11,4 +11,6 @@ interface MainRouter: BaseRouter {
     fun navigateToInputRevenue(categoryId: Int)
 
     fun navigateToInputCosts(categoryId: Int)
+
+    fun navigateToAnalytic()
 }

@@ -39,6 +39,8 @@ class MainActivity: BaseActivity(), MainView, MainRouter {
 
     override fun navigateToInputCosts(categoryId: Int) = setFragment(InputCostsFragment.newInstance(categoryId), true, true)
 
+    override fun navigateToAnalytic() = setFragment(AnalyticPagerFragment.newInstance(), true, true)
+
     private fun setFragment(fragment: Fragment, addToBackStack: Boolean, menuAnimation: Boolean = false) {
         supportFragmentManager.beginTransaction()
             .apply {

@@ -102,5 +102,5 @@ class MenuFragment : BaseFragment(), MenuView {
 
     override fun navigateToCosts() = (router as MainRouter).navigateToCostsCategory()
 
-    override fun navigateToAnalytic() {}
+    override fun navigateToAnalytic() = (router as MainRouter).navigateToAnalytic()
 }
