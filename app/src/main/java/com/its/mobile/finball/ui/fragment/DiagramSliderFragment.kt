@@ -43,7 +43,7 @@ class DiagramSliderFragment: BaseFragment(), DiagramSliderView {
         pageCount = diagramSliderViewPagerAdapter.count
 
         view_pager_diagram_slider_container.adapter = diagramSliderViewPagerAdapter
-        view_pager_diagram_slider_container.offscreenPageLimit = diagramSliderViewPagerAdapter.count
+        view_pager_diagram_slider_container.offscreenPageLimit = pageCount
         view_pager_diagram_slider_container.setOnPageChangeListener(object: ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {}
             override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}

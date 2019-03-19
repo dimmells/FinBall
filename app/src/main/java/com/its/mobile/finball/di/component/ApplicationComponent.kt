@@ -39,6 +39,10 @@ interface ApplicationComponent {
 
     fun yearDiagramComponent(yearDiagramModule: YearDiagramModule): YearDiagramComponent
 
+    fun revenueRatingComponent(revenueRatingModule: RevenueRatingModule): RevenueRatingComponent
+
+    fun costsRatingComponent(costsRatingModule: CostsRatingModule): CostsRatingComponent
+
 }
 
 

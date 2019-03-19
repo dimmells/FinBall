@@ -3,8 +3,11 @@ package com.its.mobile.finball.presentation.view
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
-interface CategoryRatingSliderView: BaseMvpView {
+interface CostsRatingView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun setActiveNavigationPoint()
+    fun showToast(text: String)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun notifyDataSetChanged()
 }

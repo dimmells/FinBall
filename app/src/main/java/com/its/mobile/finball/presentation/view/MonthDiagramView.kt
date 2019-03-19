@@ -12,4 +12,7 @@ interface MonthDiagramView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun setCostsChartData(records: List<CostsEntity>)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun showToast(text: String)
 }
