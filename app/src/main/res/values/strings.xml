@@ -6,4 +6,7 @@
     <string name="four">Four</string>
     <string name="five">Five</string>
     <string name="error_message">Error</string>
+    <string name="revenue">Revenue</string>
+    <string name="costs">Costs</string>
+    <string name="year">Year</string>
 </resources>

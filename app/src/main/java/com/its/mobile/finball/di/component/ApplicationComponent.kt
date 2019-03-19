@@ -35,6 +35,10 @@ interface ApplicationComponent {
 
     fun moneyBoxComponent(moneyBoxModule: MoneyBoxModule): MoneyBoxComponent
 
+    fun monthDiagramComponent(monthDiagramModule: MonthDiagramModule): MonthDiagramComponent
+
+    fun yearDiagramComponent(yearDiagramModule: YearDiagramModule): YearDiagramComponent
+
 }
 
 

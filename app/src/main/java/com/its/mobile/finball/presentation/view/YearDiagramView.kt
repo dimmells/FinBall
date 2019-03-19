@@ -2,9 +2,10 @@ package com.its.mobile.finball.presentation.view
 
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import com.its.mobile.finball.data.database.revenue.RevenueEntity
 
-interface DiagramSliderView: BaseMvpView {
+interface YearDiagramView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun setActiveNavigationPoint()
+    fun setChartData(records: List<RevenueEntity>)
 }
