@@ -8,13 +8,13 @@
             android:title=""/>
 
     <item
-            android:id="@+id/item_menu_analytic_statistic_category_rate"
+            android:id="@+id/item_menu_analytic_category_rate"
             android:enabled="true"
             android:icon="@android:drawable/ic_menu_sort_by_size"
             android:title=""/>
 
     <item
-            android:id="@+id/item_menu_analytic_statistic_diagram_money_box"
+            android:id="@+id/item_menu_analytic_diagram_money_box"
             android:enabled="true"
             android:icon="@android:drawable/sym_def_app_icon"
             android:title=""/>

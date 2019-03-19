@@ -18,9 +18,9 @@ class AnalyticPagerPresenter: BaseMvpPresenter<AnalyticPagerView>() {
 
             R.id.item_menu_analytic_statistic_diagram -> viewState.setPagerPosition(0)
 
-            R.id.item_menu_analytic_statistic_category_rate -> viewState.setPagerPosition(1)
+            R.id.item_menu_analytic_category_rate -> viewState.setPagerPosition(1)
 
-            R.id.item_menu_analytic_statistic_diagram_money_box -> viewState.setPagerPosition(2)
+            R.id.item_menu_analytic_diagram_money_box -> viewState.setPagerPosition(2)
         }
     }
 }

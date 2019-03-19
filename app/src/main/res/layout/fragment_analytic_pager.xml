@@ -29,6 +29,7 @@
             android:background="#fafafa"
             app:itemIconSize="32dp"
             app:itemIconTint="@drawable/analytic_pager_bottom_navigation_selector"
+            app:labelVisibilityMode="unlabeled"
             app:menu="@menu/menu_analytic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -27,5 +27,5 @@ class CategoryRatingSliderFragment : BaseFragment(), CategoryRatingSliderView {
         .providePresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.fragment_diagram_slider, container)
+        inflater.inflate(R.layout.fragment_category_rating_slider, container, false)
 }
