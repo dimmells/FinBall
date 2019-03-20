@@ -7,5 +7,5 @@ class MonthDiagramInteract(private val revenueDBManager: RevenueDBManager, priva
 
     fun loadRevenueList() = revenueDBManager.getAll()
 
-    fun loadCostsList() = costsDBManager.getAll()
+    fun loadCostsList() = costsDBManager.costsListObservable
 }

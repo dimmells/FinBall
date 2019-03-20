@@ -13,7 +13,10 @@ class CostsCategoryPresenter(private val costsCategoryInteract: CostsCategoryInt
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        categoryList.addAll(costsCategoryInteract.getCategoryList())
+        categoryList.addAll(
+            costsCategoryInteract.getCategoryList()
+                .filter { !it.isDynamic }
+        )
     }
 
     override fun getItemsCount(): Int = categoryList.size

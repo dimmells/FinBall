@@ -1,12 +1,56 @@
 <resources>
     <string name="app_name">FinBall</string>
-    <string name="one">One</string>
-    <string name="two">Two</string>
-    <string name="three">Three</string>
-    <string name="four">Four</string>
-    <string name="five">Five</string>
-    <string name="error_message">Error</string>
-    <string name="revenue">Revenue</string>
-    <string name="costs">Costs</string>
-    <string name="year">Year</string>
+    <string name="revenue_category_salary">Заработная плата</string>
+    <string name="revenue_category_sponsor">Спонсор</string>
+    <string name="revenue_category_bribe">Взятка, откат</string>
+    <string name="revenue_category_gift">Подарки</string>
+    <string name="revenue_category_dividends">Дивиденды</string>
+    <string name="revenue_category_investment">Инвестиционный доход</string>
+    <string name="revenue_category_business">Бизнес</string>
+    <string name="revenue_category_realty">Недвижимость</string>
+    <string name="revenue_category_insurance">Страхование</string>
+    <string name="revenue_category_securities_shares">Ценные бумаги, акции</string>
+    <string name="revenue_category_credit_buts">Кредиты, займы</string>
+    <string name="revenue_category_unpredictable">Непредвиденный доход</string>
+    <string name="revenue_category_gov_benefit">Государственные пособия</string>
+    <string name="costs_category_food">Питание</string>
+    <string name="costs_category_communal_rent">Коммунальные услуги</string>
+    <string name="costs_category__mob_internet_tv">Связь, интернет, ТВ</string>
+    <string name="costs_category_clothing_shoes">Одеждаб обувь</string>
+    <string name="costs_category_transport">Транспорт</string>
+    <string name="costs_category_fun">Развлечения</string>
+    <string name="costs_category_rest">Отдых</string>
+    <string name="costs_category_study">Обучение</string>
+    <string name="costs_category_children">Дети</string>
+    <string name="costs_category_parents">Родители</string>
+    <string name="costs_category_beloved">Вторая половинка</string>
+    <string name="costs_category_care_yourself">Уход за собой</string>
+    <string name="costs_category_care_home">Уход за домом</string>
+    <string name="costs_category_health_sport">Здороье, спорт</string>
+    <string name="costs_category_gift">Подарки</string>
+    <string name="costs_category_pets">Питомцы</string>
+    <string name="costs_category_hobby">Хобби</string>
+    <string name="costs_category_credit">Кредиты</string>
+    <string name="costs_category_insurance">Страхование</string>
+    <string name="costs_category_repair_furniture_machinery">Ремонт, мебель, техника</string>
+    <string name="costs_category_investment">Инвестирование</string>
+    <string name="costs_category_unpredictable">Непредвиденные расходы</string>
+    <string name="error_message">Ошибка</string>
+    <string name="revenue">Доходы</string>
+    <string name="costs">Расходы</string>
+    <string name="year">Год</string>
+    <string name="money_box">Копилка</string>
+    <string name="money_box_rules_title">Правила копилки</string>
+    <string name="money_box_rules">
+        \tПридумайте <b>место</b> (копилку, коробочку, носок, банку…) куда Вы будете <b>откладывать</b> деньги в теченни месяца и <b>не забирать</b> их до начала другого месяца, <b>не подсчитивая</b> их. \n
+        \tВ <b>последний день месяца</b> подсчитайте все сохранение деньги и <b>введите их в поле ввода выше</b>. \n
+        \t<b>ВНИМАНИЕ!</b> Ввод суммы в копилку будет доступен только в <b>последний день месяца!</b> Будьте внимательны! \n
+        \tКороткие <b>правила</b> накопления денег в <b>копилке</b>: \n
+        1. Откладывать <b>10%</b> от дохода \n
+        2. Каждый день откладывайте в копилку деньги которые <b>не жалко</b> \n
+        3. Если при покупке Вы получили <b>скидку</b> от продавца, отложите эти деньги \n
+        4. <b>Не подсчитывать</b> отложенные деньги до конца месяца \n
+        5. Откладывать <b>50%</b> от <b>непредвиденных</b> доходов \n
+        6. <b>Налог</b> себе <b>5%</b> при расходах более <b>10$</b>
+    </string>
 </resources>

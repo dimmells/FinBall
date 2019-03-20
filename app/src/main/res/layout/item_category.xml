@@ -37,7 +37,7 @@
 
 
     <View
-            android:id="@+id/view_category_item_bottom_div"
+            android:id="@+id/view_money_box_div"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="#e1e1e1"

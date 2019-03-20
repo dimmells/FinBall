@@ -6,8 +6,8 @@ import com.its.mobile.finball.data.database.costs.CostsEntity
 import com.its.mobile.finball.interact.CostsRatingInteract
 import com.its.mobile.finball.presentation.adapter.CategoryAdapterContract
 import com.its.mobile.finball.presentation.view.CostsRatingView
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 
@@ -29,7 +29,7 @@ class CostsRatingPresenter(private val costsRatingInteract: CostsRatingInteract)
         insert(CostsEntity(Date(970174800000), 1, 540.45f))
         //DELETE!!!!!!!!!!!!!!!!!!!!!
         costsCategoryList.addAll(costsRatingInteract.getCostsCategories())
-        loadRevenueList()
+        loadCostsList()
     }
 
     override fun getItemsCount(): Int = costsCategoryList.size
@@ -43,16 +43,27 @@ class CostsRatingPresenter(private val costsRatingInteract: CostsRatingInteract)
 
     override fun onCategoryItemClicked(position: Int) {}
 
-    private fun loadRevenueList() {
+    private fun loadCostsList() {
         costsRatingInteract.loadCostsList()
+            .subscribeOn(Schedulers.io())
+            .map { single ->
+                subscribeOnSingle(single)
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+            .let { disposables.add(it) }
+    }
+
+    private fun subscribeOnSingle(single: Single<List<CostsEntity>>) {
+        single
             .subscribeOn(Schedulers.io())
             .map { list ->
                 mapRevenueListToCategoryList(list)
             }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy(
-                onSuccess = { viewState.notifyDataSetChanged() },
-                onError = { viewState.showToast(it.localizedMessage) })
+            .subscribe(
+                { viewState.notifyDataSetChanged() },
+                { viewState.showToast(it.localizedMessage) })
             .let { disposables.add(it) }
     }
 
@@ -68,7 +79,6 @@ class CostsRatingPresenter(private val costsRatingInteract: CostsRatingInteract)
                 }
         }
         val newList = costsCategoryList
-//            .filter { it.amount > 0f }
             .sortedByDescending { list -> list.amount }
         costsCategoryList.clear()
         costsCategoryList.addAll(newList)

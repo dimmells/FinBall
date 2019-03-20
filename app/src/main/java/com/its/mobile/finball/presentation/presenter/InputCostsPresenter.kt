@@ -1,13 +1,11 @@
 package com.its.mobile.finball.presentation.presenter
 
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.its.mobile.finball.data.category.CategoryEntity
 import com.its.mobile.finball.data.database.costs.CostsEntity
 import com.its.mobile.finball.interact.InputCostsInteract
 import com.its.mobile.finball.presentation.view.InputCostsView
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 

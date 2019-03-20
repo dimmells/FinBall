@@ -7,18 +7,18 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.its.mobile.finball.R
 import com.its.mobile.finball.di.ApplicationLoader
-import kotlinx.android.synthetic.main.fragment_input_revenue_amount.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
-import android.view.inputmethod.InputMethodManager
 import com.its.mobile.finball.di.module.InputCostsModule
 import com.its.mobile.finball.presentation.presenter.InputCostsPresenter
 import com.its.mobile.finball.presentation.view.InputCostsView
+import kotlinx.android.synthetic.main.fragment_input_revenue_amount.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
-class InputCostsFragment: BaseFragment(), InputCostsView {
+class InputCostsFragment : BaseFragment(), InputCostsView {
 
     companion object {
 
@@ -49,7 +49,7 @@ class InputCostsFragment: BaseFragment(), InputCostsView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_input_revenue_amount, container, false)
+        inflater.inflate(R.layout.fragment_input_revenue_amount, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,11 +59,13 @@ class InputCostsFragment: BaseFragment(), InputCostsView {
         text_view_toolbar_title.text = "Costs"
         button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
 
-        edit_text_input_revenue_amount.addTextChangedListener(object: TextWatcher {
+        edit_text_input_revenue_amount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().matches(Regex("^0"))) { edit_text_input_revenue_amount.text.delete(0,1) }
+                if (s.toString().matches(Regex("^0"))) {
+                    edit_text_input_revenue_amount.text.delete(0, 1)
+                }
             }
         })
         edit_text_input_revenue_amount.requestFocus()
@@ -73,7 +75,11 @@ class InputCostsFragment: BaseFragment(), InputCostsView {
         button_input_revenue_add.setOnClickListener { inputCostsPresenter.onSaveClick(edit_text_input_revenue_amount.text.toString().toFloat()) }
     }
 
-    override fun setCategoryName(stringResId: Int) { text_view_input_revenue_category.text = context?.getString(stringResId) }
+    override fun setCategoryName(stringResId: Int) {
+        text_view_input_revenue_category.text = context?.getString(stringResId)
+    }
 
-    override fun goBack() { fragmentManager?.popBackStack() }
+    override fun goBack() {
+        fragmentManager?.popBackStack()
+    }
 }

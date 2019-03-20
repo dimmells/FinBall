@@ -9,9 +9,10 @@ class CostsRatingInteract(
     private val costsCategoryManager: CostsCategoryManager
 ) {
 
-    fun loadCostsList() = costsDBManager.getAll()
+    fun loadCostsList() = costsDBManager.costsListObservable
 
     fun getCostsCategories() = costsCategoryManager.getCostsCategoryList()
 
     fun insertTest(costsEntity: CostsEntity) = costsDBManager.insert(costsEntity)
+
 }
