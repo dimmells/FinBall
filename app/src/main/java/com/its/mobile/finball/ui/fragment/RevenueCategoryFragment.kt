@@ -56,4 +56,6 @@ class RevenueCategoryFragment: BaseFragment(), RevenueCategoryView {
     }
 
     override fun navigateToInputRevenueAmount(categoryId: Int) = (router as MainRouter).navigateToInputRevenue(categoryId)
+
+    override fun navigateToSubCategory(parentCategoryId: Int) = (router as MainRouter).navigateToSubCategoryList(parentCategoryId)
 }

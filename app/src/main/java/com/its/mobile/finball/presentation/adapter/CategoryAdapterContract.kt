@@ -14,6 +14,7 @@ interface CategoryAdapterContract {
     interface CategoryItemView {
         fun setIcon(iconId: Int)
         fun setText(textId: Int)
+        fun setText(text: String)
         fun setAmount(amount: Float)
     }
 }

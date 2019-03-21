@@ -41,6 +41,8 @@ class MainActivity: BaseActivity(), MainView, MainRouter {
 
     override fun navigateToAnalytic() = setFragment(AnalyticPagerFragment.newInstance(), true, true)
 
+    override fun navigateToSubCategoryList(parentCategoryId: Int) = setFragment(RevenueSubCategoryFragment.newInstance(parentCategoryId), true, true)
+
     private fun setFragment(fragment: Fragment, addToBackStack: Boolean, menuAnimation: Boolean = false) {
         supportFragmentManager.beginTransaction()
             .apply {

@@ -5,6 +5,7 @@ import com.its.mobile.finball.data.category.CategoryEntity
 import com.its.mobile.finball.interact.RevenueCategoryInteract
 import com.its.mobile.finball.presentation.adapter.CategoryAdapterContract
 import com.its.mobile.finball.presentation.view.RevenueCategoryView
+import com.its.mobile.finball.ui.item.RevenueCategoryItem
 
 @InjectViewState
 class RevenueCategoryPresenter(private val revenueCategoryInteract: RevenueCategoryInteract): BaseMvpPresenter<RevenueCategoryView>(), CategoryAdapterContract.AdapterPresenter, CategoryAdapterContract.CategoryItemPresenter {
@@ -24,5 +25,17 @@ class RevenueCategoryPresenter(private val revenueCategoryInteract: RevenueCateg
         view.setText(item.titleId)
     }
 
-    override fun onCategoryItemClicked(position: Int) { viewState.navigateToInputRevenueAmount(categoryList[position].id) }
+    override fun onCategoryItemClicked(position: Int) {
+        val category = categoryList[position]
+        when (category.id) {
+
+            RevenueCategoryItem.KEY_REVENUE_CATEGORY_INVESTMENT -> viewState.navigateToSubCategory(category.id)
+
+            RevenueCategoryItem.KEY_REVENUE_CATEGORY_BUSINESS -> viewState.navigateToSubCategory(category.id)
+
+            RevenueCategoryItem.KEY_REVENUE_CATEGORY_REALTY -> viewState.navigateToSubCategory(category.id)
+
+            else -> { viewState.navigateToInputRevenueAmount(categoryList[position].id) }
+        }
+    }
 }

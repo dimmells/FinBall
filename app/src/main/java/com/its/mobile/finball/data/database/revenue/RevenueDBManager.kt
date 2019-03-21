@@ -9,7 +9,6 @@ import java.util.*
 
 class RevenueDBManager(private val revenueDao: RevenueDao) {
 
-
     private val revenueListBehaviourSubject: BehaviorSubject<Single<List<RevenueEntity>>> =
         BehaviorSubject.createDefault(revenueDao.getAll())
 

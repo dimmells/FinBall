@@ -13,4 +13,6 @@ interface MainRouter: BaseRouter {
     fun navigateToInputCosts(categoryId: Int)
 
     fun navigateToAnalytic()
+
+    fun navigateToSubCategoryList(parentCategoryId: Int)
 }

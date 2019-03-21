@@ -43,6 +43,8 @@ interface ApplicationComponent {
 
     fun costsRatingComponent(costsRatingModule: CostsRatingModule): CostsRatingComponent
 
+    fun revenueSubCategoryComponent(revenueSubCategoryModule: RevenueSubCategoryModule): RevenueSubCategoryComponent
+
 }
 
 

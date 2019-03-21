@@ -8,6 +8,8 @@ import com.its.mobile.finball.data.database.costs.CostsDBManager
 import com.its.mobile.finball.data.database.costs.CostsDao
 import com.its.mobile.finball.data.database.revenue.RevenueDBManager
 import com.its.mobile.finball.data.database.revenue.RevenueDao
+import com.its.mobile.finball.data.database.subCategory.SubCategoryDBManager
+import com.its.mobile.finball.data.database.subCategory.SubCategoryDao
 import com.its.mobile.finball.di.scope.ApplicationScope
 import dagger.Module
 import dagger.Provides
@@ -37,4 +39,12 @@ class DatabaseModule {
     @Provides
     @ApplicationScope
     fun provideCostsDBManager(costsDao: CostsDao): CostsDBManager = CostsDBManager(costsDao)
+
+    @Provides
+    @ApplicationScope
+    fun provideSubCategoryDao(database: ApplicationDatabase): SubCategoryDao = database.subCategoryDao()
+
+    @Provides
+    @ApplicationScope
+    fun provideSubCategoryDBManager(subCategoryDao: SubCategoryDao): SubCategoryDBManager = SubCategoryDBManager(subCategoryDao)
 }

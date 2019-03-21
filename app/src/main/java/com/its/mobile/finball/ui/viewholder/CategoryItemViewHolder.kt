@@ -14,5 +14,7 @@ class CategoryItemViewHolder(itemView: View, presenter: CategoryAdapterContract.
 
     override fun setText(textId: Int) { itemView.text_view_category_item_text.setText(textId) }
 
+    override fun setText(text: String) { itemView.text_view_category_item_text.text = text }
+
     override fun setAmount(amount: Float) { itemView.text_view_category_item_amount.text = amount.toString() }
 }

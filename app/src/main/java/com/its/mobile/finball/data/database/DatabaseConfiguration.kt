@@ -28,4 +28,16 @@ object DatabaseConfiguration {
         }
 
     }
+
+    object SubCategory {
+
+        const val TABLE_NAME = "sub_category"
+
+        object Columns {
+            const val CATEGORY_ID = "category_id"
+            const val PARENT_CATEGORY_ID = "parent_category_id"
+            const val TITLE = "title"
+        }
+
+    }
 }

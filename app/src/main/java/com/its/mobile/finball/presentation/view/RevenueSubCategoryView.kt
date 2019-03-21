@@ -3,11 +3,18 @@ package com.its.mobile.finball.presentation.view
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
-interface RevenueCategoryView: BaseMvpView {
+interface RevenueSubCategoryView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun navigateToInputRevenueAmount(categoryId: Int)
+    fun showToast(text: String)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun navigateToSubCategory(parentCategoryId: Int)
+    fun showDialog()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun closeDialog()
+
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun notifyDataSetChanged()
 }
