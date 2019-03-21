@@ -27,15 +27,9 @@ class RevenueCategoryPresenter(private val revenueCategoryInteract: RevenueCateg
 
     override fun onCategoryItemClicked(position: Int) {
         val category = categoryList[position]
-        when (category.id) {
-
-            RevenueCategoryItem.KEY_REVENUE_CATEGORY_INVESTMENT -> viewState.navigateToSubCategory(category.id)
-
-            RevenueCategoryItem.KEY_REVENUE_CATEGORY_BUSINESS -> viewState.navigateToSubCategory(category.id)
-
-            RevenueCategoryItem.KEY_REVENUE_CATEGORY_REALTY -> viewState.navigateToSubCategory(category.id)
-
-            else -> { viewState.navigateToInputRevenueAmount(categoryList[position].id) }
-        }
+        if (category.isDynamic)
+            viewState.navigateToSubCategory(category.id)
+        else
+            viewState.navigateToInputRevenueAmount(category.id)
     }
 }
