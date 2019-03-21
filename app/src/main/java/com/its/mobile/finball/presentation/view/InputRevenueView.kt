@@ -9,6 +9,9 @@ interface InputRevenueView: BaseMvpView {
     fun setCategoryName(stringResId: Int)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
+    fun setCategoryName(text: String)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
     fun showToast(text: String)
 
     @StateStrategyType(OneExecutionStateStrategy::class)

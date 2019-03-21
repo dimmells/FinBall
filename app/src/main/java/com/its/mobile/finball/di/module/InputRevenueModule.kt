@@ -2,6 +2,7 @@ package com.its.mobile.finball.di.module
 
 import com.its.mobile.finball.data.category.RevenueCategoryManager
 import com.its.mobile.finball.data.database.revenue.RevenueDBManager
+import com.its.mobile.finball.data.database.subCategory.SubCategoryDBManager
 import com.its.mobile.finball.di.scope.ViewScope
 import com.its.mobile.finball.interact.InputRevenueInteract
 import com.its.mobile.finball.presentation.presenter.InputRevenuePresenter
@@ -13,9 +14,14 @@ class InputRevenueModule {
 
     @Provides
     @ViewScope
-    fun provideInputRevenueInteract(revenueCategoryManager: RevenueCategoryManager, revenueDBManager: RevenueDBManager): InputRevenueInteract = InputRevenueInteract(revenueCategoryManager, revenueDBManager)
+    fun provideInputRevenueInteract(
+        revenueCategoryManager: RevenueCategoryManager,
+        revenueDBManager: RevenueDBManager,
+        subCategoryDBManager: SubCategoryDBManager
+    ): InputRevenueInteract = InputRevenueInteract(revenueCategoryManager, revenueDBManager, subCategoryDBManager)
 
     @Provides
     @ViewScope
-    fun provideInputRevenuePrersenter(inputRevenueInteract: InputRevenueInteract): InputRevenuePresenter = InputRevenuePresenter(inputRevenueInteract)
+    fun provideInputRevenuePrersenter(inputRevenueInteract: InputRevenueInteract): InputRevenuePresenter =
+        InputRevenuePresenter(inputRevenueInteract)
 }

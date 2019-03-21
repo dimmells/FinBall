@@ -14,7 +14,9 @@ interface RevenueSubCategoryView: BaseMvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun closeDialog()
 
-
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun notifyDataSetChanged()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToInputRevenue(subCategoryId: Int)
 }

@@ -13,21 +13,34 @@ import java.util.*
 class InputRevenuePresenter(private val inputRevenueInteract: InputRevenueInteract) :
     BaseMvpPresenter<InputRevenueView>() {
 
-    private lateinit var category: CategoryEntity
+    private var categoryId = 0
 
     fun onStart(categoryId: Int) {
-        loadCategoryInfo(categoryId)
-    }
-
-    private fun loadCategoryInfo(categoryId: Int) {
-        inputRevenueInteract.getCategoryInfo(categoryId)?.let {
-            category = it
-            viewState.setCategoryName(category.titleId)
+        this.categoryId = categoryId
+        if (!loadCategoryInfo(categoryId)) {
+            inputRevenueInteract.getSubCategoryInfo(categoryId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        viewState.setCategoryName(it.title)
+                    },
+                    { viewState.showToast(it.localizedMessage) }
+                )
+                .let { disposables.add(it) }
         }
     }
 
+    private fun loadCategoryInfo(categoryId: Int): Boolean {
+        inputRevenueInteract.getCategoryInfo(categoryId)?.let {
+            viewState.setCategoryName(it.titleId)
+            return true
+        }
+        return false
+    }
+
     fun onSaveClick(amount: Float) {
-        inputRevenueInteract.saveRevenue(RevenueEntity(Calendar.getInstance().time, category.id, amount))
+        inputRevenueInteract.saveRevenue(RevenueEntity(Calendar.getInstance().time, categoryId, amount))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError { throwable ->

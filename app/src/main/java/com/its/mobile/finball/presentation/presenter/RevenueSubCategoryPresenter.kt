@@ -24,8 +24,7 @@ class RevenueSubCategoryPresenter(private val revenueSubCategoryInteract: Revenu
         view.setText(item.title)
     }
 
-    override fun onCategoryItemClicked(position: Int) {
-    }
+    override fun onCategoryItemClicked(position: Int) { viewState.navigateToInputRevenue(subCategoryList[position].id) }
 
     fun loadSubCategoryList(parentCategory: Int) {
         parentCategoryId = parentCategory

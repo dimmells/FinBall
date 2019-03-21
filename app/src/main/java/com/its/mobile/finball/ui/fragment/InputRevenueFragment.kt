@@ -75,5 +75,7 @@ class InputRevenueFragment: BaseFragment(), InputRevenueView {
 
     override fun setCategoryName(stringResId: Int) { text_view_input_revenue_category.text = context?.getString(stringResId) }
 
+    override fun setCategoryName(text: String) { text_view_input_revenue_category.text = text }
+
     override fun goBack() { fragmentManager?.popBackStack() }
 }

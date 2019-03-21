@@ -14,6 +14,7 @@ import com.its.mobile.finball.di.module.RevenueSubCategoryModule
 import com.its.mobile.finball.presentation.presenter.RevenueSubCategoryPresenter
 import com.its.mobile.finball.presentation.view.RevenueSubCategoryView
 import com.its.mobile.finball.ui.adapter.CategoryRecyclerAdapter
+import com.its.mobile.finball.ui.navigation.MainRouter
 import kotlinx.android.synthetic.main.fragment_dialog_sub_category_create.*
 import kotlinx.android.synthetic.main.fragment_dialog_sub_category_create.view.*
 import kotlinx.android.synthetic.main.fragment_revenue_sub_category.*
@@ -101,4 +102,6 @@ class RevenueSubCategoryFragment : BaseFragment(), RevenueSubCategoryView {
     override fun notifyDataSetChanged() {
         subCategoryRecyclerAdapter.notifyDataSetChanged()
     }
+
+    override fun navigateToInputRevenue(subCategoryId: Int) = (router as MainRouter).navigateToInputRevenue(subCategoryId)
 }
