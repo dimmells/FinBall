@@ -1,5 +1,6 @@
 package com.its.mobile.finball.data.database.costs
 
+import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -32,7 +33,10 @@ class CostsDBManager(private val costsDao: CostsDao) {
             .subscribeOn(Schedulers.io())
     }
 
-    fun updateOther() {
+    fun getByCategory(categoryId: Int): Single<List<RevenueEntity>> = costsDao.getByCategory(categoryId)
+        .subscribeOn(Schedulers.io())
+
+    fun notifyAboutUpdate() {
         costsListBehaviourSubject.onNext(getAll())
     }
 

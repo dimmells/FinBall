@@ -14,6 +14,9 @@ interface RevenueDao {
     @Query("SELECT * FROM ${DatabaseConfiguration.Revenue.TABLE_NAME} WHERE ${DatabaseConfiguration.Revenue.Columns.DATE} BETWEEN :from AND :to")
     fun getBetweenDates(from: Date, to: Date): Single<List<RevenueEntity>>
 
+    @Query("SELECT ${DatabaseConfiguration.Revenue.Columns.AMOUNT} FROM ${DatabaseConfiguration.Revenue.TABLE_NAME} WHERE ${DatabaseConfiguration.Revenue.Columns.DATE} BETWEEN :from AND :to")
+    fun getAmountBetweenDates(from: Date, to: Date): Single<List<Float>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(revenueEntity: RevenueEntity): Long
 

@@ -33,7 +33,13 @@ class RevenueDBManager(private val revenueDao: RevenueDao) {
             .subscribeOn(Schedulers.io())
     }
 
-    fun updateOther() {
+    fun getBetweenDates(from: Date, to: Date): Single<List<RevenueEntity>> = revenueDao.getBetweenDates(from, to)
+        .subscribeOn(Schedulers.io())
+
+    fun getAmountBetweenDates(from: Date, to: Date): Single<List<Float>> = revenueDao.getAmountBetweenDates(from, to)
+        .subscribeOn(Schedulers.io())
+
+    fun notifyAboutUpdate() {
         revenueListBehaviourSubject.onNext(getAll())
     }
 
