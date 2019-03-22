@@ -4,19 +4,50 @@ import com.arellomobile.mvp.InjectViewState
 import com.github.mikephil.charting.data.PieEntry
 import com.its.mobile.finball.interact.MenuInteract
 import com.its.mobile.finball.presentation.view.MenuView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 @InjectViewState
 class MenuPresenter(private val menuInteract: MenuInteract): BaseMvpPresenter<MenuView>() {
 
+    private var revenue = 0f
+    private var costs = 0f
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.setupChart(getTotalRevenueAndCostForMonth())
+        getTotalRevenueForMonth()
     }
 
-    private fun getTotalRevenueAndCostForMonth(): MutableList<PieEntry> {
-        val revenue = 2500f
-        val costs = 1000f
-        return mutableListOf(PieEntry(revenue, "$revenue"), PieEntry(costs, "$costs"))
+    fun onResume() {
+        getTotalRevenueForMonth()
+    }
+
+    private fun getTotalRevenueForMonth() {
+        menuInteract.getMonthRevenue()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { revenueList ->
+                    revenueList.forEach { revenue += it.amount }
+                    getTotalCostsFroMonth()
+                },
+                { viewState.showToast(it.localizedMessage) }
+            )
+            .let { disposables.add(it) }
+    }
+
+    private fun getTotalCostsFroMonth() {
+        menuInteract.getMonthCosts()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { costsList ->
+                    costsList.forEach { costs += it.amount }
+                    viewState.setupChart(mutableListOf(PieEntry(revenue, "$revenue"), PieEntry(costs, "$costs")))
+                },
+                { viewState.showToast(it.localizedMessage) }
+            )
+            .let { disposables.add(it) }
     }
 
     fun onRevenueClicked() = viewState.navigateToRevenue()

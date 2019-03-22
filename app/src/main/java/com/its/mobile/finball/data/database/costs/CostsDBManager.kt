@@ -33,6 +33,9 @@ class CostsDBManager(private val costsDao: CostsDao) {
             .subscribeOn(Schedulers.io())
     }
 
+    fun getBetweenDates(from: Date, to: Date): Single<List<CostsEntity>> = costsDao.getBetweenDates(from, to)
+            .subscribeOn(Schedulers.io())
+
     fun getByCategory(categoryId: Int): Single<List<RevenueEntity>> = costsDao.getByCategory(categoryId)
         .subscribeOn(Schedulers.io())
 

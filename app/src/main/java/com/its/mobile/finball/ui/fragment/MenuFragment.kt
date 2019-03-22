@@ -48,6 +48,10 @@ class MenuFragment : BaseFragment(), MenuView {
         button_menu_analytic.setOnClickListener { menuPresenter.onAnalyticClicked() }
     }
 
+    override fun onResume() {
+        super.onResume()
+        menuPresenter.onResume()
+    }
 
     override fun setupChart(entries: MutableList<PieEntry>) {
         pie_chart_menu_correlation.setBackgroundColor(Color.TRANSPARENT)
