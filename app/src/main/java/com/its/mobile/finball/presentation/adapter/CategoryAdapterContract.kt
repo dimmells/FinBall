@@ -9,6 +9,7 @@ interface CategoryAdapterContract {
 
     interface CategoryItemPresenter {
         fun onCategoryItemClicked(position: Int)
+        fun onCategoryItemLongClick(position: Int): Boolean
     }
 
     interface CategoryItemView {

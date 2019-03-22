@@ -26,6 +26,11 @@ class RevenueSubCategoryPresenter(private val revenueSubCategoryInteract: Revenu
 
     override fun onCategoryItemClicked(position: Int) { viewState.navigateToInputRevenue(subCategoryList[position].id) }
 
+    override fun onCategoryItemLongClick(position: Int): Boolean {
+        viewState.showRemoveSubCategoryDialog(subCategoryList[position].title, position)
+        return true
+    }
+
     fun loadSubCategoryList(parentCategory: Int) {
         parentCategoryId = parentCategory
         subCategoryList.clear()
@@ -56,6 +61,20 @@ class RevenueSubCategoryPresenter(private val revenueSubCategoryInteract: Revenu
                 {
                     viewState.closeDialog()
                     loadSubCategoryList(parentCategoryId)
+                },
+                { viewState.showToast(it.localizedMessage) }
+            )
+            .let { disposables.add(it) }
+    }
+
+    fun onDeleteClick(position: Int) {
+        revenueSubCategoryInteract.delete(subCategoryList[position])
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    loadSubCategoryList(parentCategoryId)
+                    viewState.showToast("Deleted")
                 },
                 { viewState.showToast(it.localizedMessage) }
             )

@@ -8,6 +8,7 @@ class CategoryItemViewHolder(itemView: View, presenter: CategoryAdapterContract.
 
     init {
         itemView.setOnClickListener { presenter.onCategoryItemClicked(adapterPosition) }
+        itemView.setOnLongClickListener { presenter.onCategoryItemLongClick(adapterPosition) }
     }
 
     override fun setIcon(iconId: Int) { itemView.image_view_category_item_icon.setImageResource(iconId) }

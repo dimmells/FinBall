@@ -32,4 +32,6 @@ class RevenueCategoryPresenter(private val revenueCategoryInteract: RevenueCateg
         else
             viewState.navigateToInputRevenueAmount(category.id)
     }
+
+    override fun onCategoryItemLongClick(position: Int): Boolean = false
 }

@@ -28,4 +28,6 @@ class CostsCategoryPresenter(private val costsCategoryInteract: CostsCategoryInt
     }
 
     override fun onCategoryItemClicked(position: Int) { viewState.navigateToInputCostsAmount(categoryList[position].id) }
+
+    override fun onCategoryItemLongClick(position: Int): Boolean = false
 }

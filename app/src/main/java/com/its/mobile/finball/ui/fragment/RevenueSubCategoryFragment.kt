@@ -1,5 +1,6 @@
 package com.its.mobile.finball.ui.fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
@@ -91,17 +92,21 @@ class RevenueSubCategoryFragment : BaseFragment(), RevenueSubCategoryView {
             revenueSubCategoryPresenter.onSaveClick(
                 alertDialog.edit_text_dialog_sub_category_create_name.text.toString()
             )
-            alertDialog.dismiss()
         }
     }
 
-    override fun closeDialog() {
-        alertDialog.dismiss()
+    override fun showRemoveSubCategoryDialog(name: String, position: Int) {
+        val context = context ?: return
+        val mBuilder = AlertDialog.Builder(context)
+            .setTitle("Remove sub category")
+            .setPositiveButton("Cancel") { dialog, _ -> dialog?.dismiss() }
+            .setNegativeButton("Delete") { _, _ -> revenueSubCategoryPresenter.onDeleteClick(position) }
+        alertDialog = mBuilder.show()
     }
 
-    override fun notifyDataSetChanged() {
-        subCategoryRecyclerAdapter.notifyDataSetChanged()
-    }
+    override fun closeDialog() = alertDialog.dismiss()
+
+    override fun notifyDataSetChanged() = subCategoryRecyclerAdapter.notifyDataSetChanged()
 
     override fun navigateToInputRevenue(subCategoryId: Int) = (router as MainRouter).navigateToInputRevenue(subCategoryId)
 }

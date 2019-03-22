@@ -43,6 +43,8 @@ class CostsRatingPresenter(private val costsRatingInteract: CostsRatingInteract)
 
     override fun onCategoryItemClicked(position: Int) {}
 
+    override fun onCategoryItemLongClick(position: Int): Boolean = false
+
     private fun loadCostsList() {
         costsRatingInteract.loadCostsList()
             .subscribeOn(Schedulers.io())

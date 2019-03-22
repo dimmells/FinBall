@@ -1,9 +1,6 @@
 package com.its.mobile.finball.data.database.subCategory
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import android.arch.persistence.room.*
 import com.its.mobile.finball.data.database.DatabaseConfiguration
 import io.reactivex.Single
 
@@ -21,6 +18,9 @@ interface SubCategoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(subCategoryEntity: SubCategoryEntity): Long
+
+    @Delete
+    fun delete(subCategoryEntity: SubCategoryEntity)
 
     @Query("DELETE FROM ${DatabaseConfiguration.SubCategory.TABLE_NAME}")
     fun clear()

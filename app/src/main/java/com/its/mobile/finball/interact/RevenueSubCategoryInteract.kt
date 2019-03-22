@@ -8,4 +8,6 @@ class RevenueSubCategoryInteract(private val subCategoryDBManager: SubCategoryDB
     fun getSubCategoryList(parentCategoryId: Int) = subCategoryDBManager.getSubCategoryList(parentCategoryId)
 
     fun insert(subCategoryEntity: SubCategoryEntity) = subCategoryDBManager.insert(subCategoryEntity)
+
+    fun delete(subCategoryEntity: SubCategoryEntity) = subCategoryDBManager.delete(subCategoryEntity)
 }

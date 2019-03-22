@@ -19,4 +19,7 @@ interface RevenueSubCategoryView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun navigateToInputRevenue(subCategoryId: Int)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun showRemoveSubCategoryDialog(name: String, position: Int)
 }
