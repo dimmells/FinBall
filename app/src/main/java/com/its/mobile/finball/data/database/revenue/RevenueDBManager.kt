@@ -33,10 +33,34 @@ class RevenueDBManager(private val revenueDao: RevenueDao) {
             .subscribeOn(Schedulers.io())
     }
 
+    fun getInMonth(month: Calendar): Single<List<RevenueEntity>> {
+        val from = Calendar.getInstance()
+        from.set(Calendar.MONTH, month.time.month)
+        from.set(Calendar.DAY_OF_MONTH, 1)
+        from.time.apply {
+            hours = 0
+            minutes = 0
+            seconds = 0
+        }
+
+        val to = Calendar.getInstance()
+        to.set(Calendar.MONTH, month.time.month)
+        to.set(Calendar.DAY_OF_MONTH, month.getActualMaximum(Calendar.DAY_OF_MONTH))
+        to.time.apply {
+            hours = 0
+            minutes = 0
+            seconds = 0
+        }
+        return getBetweenDates(from.time, to.time)
+    }
+
     fun getBetweenDates(from: Date, to: Date): Single<List<RevenueEntity>> = revenueDao.getBetweenDates(from, to)
         .subscribeOn(Schedulers.io())
 
     fun getAmountBetweenDates(from: Date, to: Date): Single<List<Float>> = revenueDao.getAmountBetweenDates(from, to)
+        .subscribeOn(Schedulers.io())
+
+    fun getByCategory(categoryId: Int): Single<List<RevenueEntity>> = revenueDao.getByCategoryId(categoryId)
         .subscribeOn(Schedulers.io())
 
     fun notifyAboutUpdate() {

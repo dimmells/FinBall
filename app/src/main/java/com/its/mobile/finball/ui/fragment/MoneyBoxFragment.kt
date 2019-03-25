@@ -2,6 +2,8 @@ package com.its.mobile.finball.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +45,19 @@ class MoneyBoxFragment : BaseFragment(), MoneyBoxView {
         }
         button_money_box_rules_switch.setOnClickListener { moneyBoxPresenter.onMoneyBoxSwitchClick() }
         text_view_money_box_investment_rules_title.setOnClickListener { moneyBoxPresenter.onMoneyBoxSwitchClick() }
+
+        edit_text_money_box_independency_percent.addTextChangedListener(percentChangeListener())
     }
+
+    private fun percentChangeListener(): TextWatcher =
+        object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (!s.isNullOrEmpty())
+                    moneyBoxPresenter.onFinIndependencyPercentSet(s.toString().toFloat())
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        }
 
     override fun setMoneyBoxInvestmentRulesVisible(isVisible: Boolean) {
         text_view_money_box_investment_rules.visibility = if (isVisible) View.VISIBLE else View.GONE
@@ -80,4 +94,6 @@ class MoneyBoxFragment : BaseFragment(), MoneyBoxView {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
+
+    override fun setFinIndependencyResult(result: String) { text_view_money_box_fin_independency_result_date.text = result }
 }

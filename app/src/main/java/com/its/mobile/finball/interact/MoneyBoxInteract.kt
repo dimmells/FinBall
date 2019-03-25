@@ -3,6 +3,7 @@ package com.its.mobile.finball.interact
 import com.its.mobile.finball.data.database.costs.CostsDBManager
 import com.its.mobile.finball.data.database.costs.CostsEntity
 import com.its.mobile.finball.data.database.revenue.RevenueDBManager
+import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import io.reactivex.Single
 import java.util.*
 
@@ -12,8 +13,12 @@ class MoneyBoxInteract(private val costsDBManager: CostsDBManager, private val r
 
     fun notifyAboutUpdate() = costsDBManager.notifyAboutUpdate()
 
-    fun getBetweenDates(from: Date, to: Date): Single<List<Float>> = revenueDBManager.getAmountBetweenDates(from, to)
+    fun getRevenueBetweenDates(from: Date, to: Date): Single<List<Float>> = revenueDBManager.getAmountBetweenDates(from, to)
 
-    fun getByCategory(categoryId: Int) = costsDBManager.getByCategory(categoryId)
+    fun getCostsByCategory(categoryId: Int): Single<List<CostsEntity>> = costsDBManager.getByCategory(categoryId)
+
+    fun getRevenueByCategory(categoryId: Int): Single<List<RevenueEntity>> = revenueDBManager.getByCategory(categoryId)
+
+    fun getCostsInMonth(month: Calendar): Single<List<CostsEntity>> = costsDBManager.getInMonth(month)
 
 }

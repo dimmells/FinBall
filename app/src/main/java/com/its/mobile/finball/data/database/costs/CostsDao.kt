@@ -16,7 +16,7 @@ interface CostsDao {
     fun getBetweenDates(from: Date, to: Date): Single<List<CostsEntity>>
 
     @Query("SELECT * FROM ${DatabaseConfiguration.Costs.TABLE_NAME} WHERE ${DatabaseConfiguration.Costs.Columns.CATEGORY_ID} = :categoryId")
-    fun getByCategory(categoryId: Int): Single<List<RevenueEntity>>
+    fun getByCategory(categoryId: Int): Single<List<CostsEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(costsEntity: CostsEntity): Long

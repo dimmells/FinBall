@@ -22,4 +22,7 @@ interface MoneyBoxView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun clearMoneyBoxInvestmentInput()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun setFinIndependencyResult(result: String)
 }

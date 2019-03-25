@@ -33,10 +33,31 @@ class CostsDBManager(private val costsDao: CostsDao) {
             .subscribeOn(Schedulers.io())
     }
 
+    fun getInMonth(month: Calendar): Single<List<CostsEntity>> {
+        val from = Calendar.getInstance()
+        from.set(Calendar.MONTH, month.time.month)
+        from.set(Calendar.DAY_OF_MONTH, 1)
+        from.time.apply {
+            hours = 0
+            minutes = 0
+            seconds = 0
+        }
+
+        val to = Calendar.getInstance()
+        to.set(Calendar.MONTH, month.time.month)
+        to.set(Calendar.DAY_OF_MONTH, month.getActualMaximum(Calendar.DAY_OF_MONTH))
+        to.time.apply {
+            hours = 0
+            minutes = 0
+            seconds = 0
+        }
+        return getBetweenDates(from.time, to.time)
+    }
+
     fun getBetweenDates(from: Date, to: Date): Single<List<CostsEntity>> = costsDao.getBetweenDates(from, to)
             .subscribeOn(Schedulers.io())
 
-    fun getByCategory(categoryId: Int): Single<List<RevenueEntity>> = costsDao.getByCategory(categoryId)
+    fun getByCategory(categoryId: Int): Single<List<CostsEntity>> = costsDao.getByCategory(categoryId)
         .subscribeOn(Schedulers.io())
 
     fun notifyAboutUpdate() {

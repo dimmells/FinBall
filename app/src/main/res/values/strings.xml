@@ -53,4 +53,5 @@
         5. Откладывать <b>50%</b> от <b>непредвиденных</b> доходов \n
         6. <b>Налог</b> себе <b>5%</b> при расходах более <b>10$</b>
     </string>
+    <string name="money_box_fin_independency_title">Расчет финансовой независимости</string>
 </resources>
