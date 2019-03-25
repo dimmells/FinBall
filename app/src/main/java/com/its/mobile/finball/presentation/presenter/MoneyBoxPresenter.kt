@@ -5,7 +5,6 @@ import com.its.mobile.finball.data.database.costs.CostsEntity
 import com.its.mobile.finball.interact.MoneyBoxInteract
 import com.its.mobile.finball.presentation.view.MoneyBoxView
 import com.its.mobile.finball.ui.item.CostsCategoryItem
-import com.its.mobile.finball.ui.item.RevenueCategoryItem
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -19,11 +18,14 @@ class MoneyBoxPresenter(private val moneyBoxInteract: MoneyBoxInteract): BaseMvp
     private var isMoneyBoxInvestmentRulesOpen: Boolean = false
     private var isLastDayInMonth: Boolean = false
     private var finIndependencyPercent = 0f
+    private var investmentForLastMonth: Float = 0f
+    private var costsAmountForLastMonth: Float = 0f
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
         isLastDayInMonth = isLastDayInMonth()
+        loadCostsForLastMonth()
         updateLayout()
     }
 
@@ -139,18 +141,57 @@ class MoneyBoxPresenter(private val moneyBoxInteract: MoneyBoxInteract): BaseMvp
     fun onFinIndependencyPercentSet(percent: Float) {
         if (percent > 0f && percent <= 100f) {
             finIndependencyPercent = percent
-            getInvestmentForLastMonth()
+            loadInvestmentForLastMonth()
         } else {
             viewState.showToast("Введите значение от 0 до 100")
         }
     }
 
-    private fun calculateFinIndependency(investmentForLastMonth: Float, costsForLastMonth: Float) {
+    private fun loadInvestmentForLastMonth() {
+        val previousMonth = Calendar.getInstance()
+        previousMonth.add(Calendar.MONTH, -1)
+        moneyBoxInteract.getCostsByCategory(CostsCategoryItem.KEY_COSTS_CATEGORY_INVESTMENT)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { investmentList ->
+                    investmentForLastMonth = 0f
+                    investmentList.filter { it.date.year == previousMonth.time.year && it.date.month == previousMonth.time.month }
+                        .forEach { investmentForLastMonth += it.amount }
+                    loadCostsForLastMonth()
+                },
+                { viewState.showToast(it.localizedMessage) }
+            )
+            .let { disposables.add(it) }
+    }
+
+    private fun loadCostsForLastMonth() {
+        val previousMonth = Calendar.getInstance()
+        previousMonth.add(Calendar.MONTH, -1)
+        moneyBoxInteract.getCostsInMonth(previousMonth)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { costsList ->
+                    costsAmountForLastMonth = 0f
+                    costsList.forEach {
+                        if (it.categoryId != CostsCategoryItem.KEY_COSTS_CATEGORY_INVESTMENT)
+                            costsAmountForLastMonth += it.amount
+                    }
+                    calculateFinIndependency()
+                    calculatePricePerWorkHour()
+                },
+                { viewState.showToast(it.localizedMessage) }
+            )
+            .let { disposables.add(it) }
+    }
+
+    private fun calculateFinIndependency() {
         Observable.fromCallable {
             var investmentRevenue = investmentForLastMonth
             var monthToFinIndependency = 0
             var percentRevenue = 0f
-            while (percentRevenue < costsForLastMonth) {
+            while (percentRevenue < costsAmountForLastMonth) {
                 percentRevenue = investmentRevenue * (finIndependencyPercent / 100)
                 investmentRevenue += percentRevenue + investmentForLastMonth
                 monthToFinIndependency++
@@ -170,44 +211,5 @@ class MoneyBoxPresenter(private val moneyBoxInteract: MoneyBoxInteract): BaseMvp
 
     }
 
-    private fun getInvestmentForLastMonth() {
-        val previousMonth = Calendar.getInstance()
-        previousMonth.add(Calendar.MONTH, -1)
-        moneyBoxInteract.getCostsByCategory(CostsCategoryItem.KEY_COSTS_CATEGORY_INVESTMENT)
-            .subscribeOn(Schedulers.io())
-            .map { investmentList ->
-                var amount = 0f
-                investmentList.filter { it.date.year == previousMonth.time.year && it.date.month == previousMonth.time.month }
-                    .forEach { amount += it.amount }
-                amount
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { getCostsForLastMonth(it) },
-                { viewState.showToast(it.localizedMessage) }
-            )
-            .let { disposables.add(it) }
-    }
-
-    private fun getCostsForLastMonth(investmentForLastMonth: Float) {
-        val previousMonth = Calendar.getInstance()
-        previousMonth.add(Calendar.MONTH, -1)
-        moneyBoxInteract.getCostsInMonth(previousMonth)
-            .subscribeOn(Schedulers.io())
-            .map { costsList ->
-                var amount = 0f
-                costsList.forEach {
-                    if (it.categoryId != CostsCategoryItem.KEY_COSTS_CATEGORY_INVESTMENT)
-                        amount += it.amount
-                }
-                amount
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { calculateFinIndependency(investmentForLastMonth, it) },
-                { viewState.showToast(it.localizedMessage) }
-            )
-            .let { disposables.add(it) }
-    }
-
+    private fun calculatePricePerWorkHour() = viewState.setPricePerWorkHour("${costsAmountForLastMonth / 160}/час")
 }

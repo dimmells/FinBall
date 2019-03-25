@@ -25,4 +25,7 @@ interface MoneyBoxView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun setFinIndependencyResult(result: String)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun setPricePerWorkHour(price: String)
 }

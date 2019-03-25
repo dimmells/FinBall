@@ -17,8 +17,6 @@ class MoneyBoxInteract(private val costsDBManager: CostsDBManager, private val r
 
     fun getCostsByCategory(categoryId: Int): Single<List<CostsEntity>> = costsDBManager.getByCategory(categoryId)
 
-    fun getRevenueByCategory(categoryId: Int): Single<List<RevenueEntity>> = revenueDBManager.getByCategory(categoryId)
-
     fun getCostsInMonth(month: Calendar): Single<List<CostsEntity>> = costsDBManager.getInMonth(month)
 
 }

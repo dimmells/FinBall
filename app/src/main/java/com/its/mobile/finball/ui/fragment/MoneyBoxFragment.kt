@@ -96,4 +96,6 @@ class MoneyBoxFragment : BaseFragment(), MoneyBoxView {
     }
 
     override fun setFinIndependencyResult(result: String) { text_view_money_box_fin_independency_result_date.text = result }
+
+    override fun setPricePerWorkHour(price: String) { text_view_money_box_price_per_work_hour_price.text = price }
 }

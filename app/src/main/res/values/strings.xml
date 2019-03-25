@@ -54,4 +54,5 @@
         6. <b>Налог</b> себе <b>5%</b> при расходах более <b>10$</b>
     </string>
     <string name="money_box_fin_independency_title">Расчет финансовой независимости</string>
+    <string name="money_box_price_per_work_hour_title">Стоимость работы в час</string>
 </resources>
