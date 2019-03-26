@@ -45,6 +45,8 @@ interface ApplicationComponent {
 
     fun revenueSubCategoryComponent(revenueSubCategoryModule: RevenueSubCategoryModule): RevenueSubCategoryComponent
 
+    fun settingComponent(settingModule: SettingModule): SettingComponent
+
 }
 
 

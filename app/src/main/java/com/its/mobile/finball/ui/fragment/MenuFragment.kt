@@ -46,6 +46,7 @@ class MenuFragment : BaseFragment(), MenuView {
         button_menu_revenue.setOnClickListener { menuPresenter.onRevenueClicked() }
         button_menu_costs.setOnClickListener { menuPresenter.onCostsClicked() }
         button_menu_analytic.setOnClickListener { menuPresenter.onAnalyticClicked() }
+        button_menu_setting.setOnClickListener { menuPresenter.onSettingClicked() }
     }
 
     override fun onResume() {
@@ -107,4 +108,6 @@ class MenuFragment : BaseFragment(), MenuView {
     override fun navigateToCosts() = (router as MainRouter).navigateToCostsCategory()
 
     override fun navigateToAnalytic() = (router as MainRouter).navigateToAnalytic()
+
+    override fun navigateToSetting() = (router as MainRouter).navigateToSetting()
 }

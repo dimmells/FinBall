@@ -9,7 +9,7 @@ class SubCategoryDBManager(private val subCategoryDao: SubCategoryDao) {
     fun getAll(): Single<List<SubCategoryEntity>> = subCategoryDao.getAll()
         .subscribeOn(Schedulers.io())
 
-    fun getSubCategory(subCategoryId: Int) = subCategoryDao.getSubCategory(subCategoryId)
+    fun getSubCategory(subCategoryId: Int): Single<SubCategoryEntity> = subCategoryDao.getSubCategory(subCategoryId)
         .subscribeOn(Schedulers.io())
 
     fun getSubCategoryList(parentCategoryId: Int): Single<List<SubCategoryEntity>> =

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools" package="com.its.mobile.finball">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
             android:name=".di.ApplicationLoader"
             android:allowBackup="false"
@@ -11,6 +14,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="${applicationId}.myfileprovider"
+                android:grantUriPermissions="true"
+                android:exported="false">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/filepaths" />
+        </provider>
+
         <activity android:name=".ui.activity.MainActivity"
                   android:screenOrientation="portrait"
                 android:windowSoftInputMode="adjustResize">

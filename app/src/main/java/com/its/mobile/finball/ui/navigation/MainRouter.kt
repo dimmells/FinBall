@@ -15,4 +15,6 @@ interface MainRouter: BaseRouter {
     fun navigateToAnalytic()
 
     fun navigateToSubCategoryList(parentCategoryId: Int)
+
+    fun navigateToSetting()
 }

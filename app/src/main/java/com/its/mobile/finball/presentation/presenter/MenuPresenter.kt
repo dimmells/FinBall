@@ -55,4 +55,6 @@ class MenuPresenter(private val menuInteract: MenuInteract): BaseMvpPresenter<Me
     fun onCostsClicked() = viewState.navigateToCosts()
 
     fun onAnalyticClicked() = viewState.navigateToAnalytic()
+
+    fun onSettingClicked() = viewState.navigateToSetting()
 }
