@@ -16,4 +16,7 @@ interface SettingView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun checkPermissions()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun setImport(text: String)
 }
