@@ -6,4 +6,5 @@ import com.its.mobile.finball.data.category.RevenueCategoryManager
 class RevenueCategoryInteract(private val revenueCategoryManager: RevenueCategoryManager) {
 
     fun getCategoryList(): ArrayList<CategoryEntity> = revenueCategoryManager.getRevenueCategoryList()
+
 }

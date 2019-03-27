@@ -14,6 +14,8 @@ class InputRevenuePresenter(private val inputRevenueInteract: InputRevenueIntera
     BaseMvpPresenter<InputRevenueView>() {
 
     private var categoryId = 0
+    private var ratingRategoryId = 0
+    private var categoryRating = 0
 
     fun onStart(categoryId: Int) {
         this.categoryId = categoryId
@@ -23,6 +25,7 @@ class InputRevenuePresenter(private val inputRevenueInteract: InputRevenueIntera
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
+                        loadCategoryInfo(it.parentCategory)
                         viewState.setCategoryName(it.title)
                     },
                     { viewState.showToast(it.localizedMessage) }
@@ -33,6 +36,8 @@ class InputRevenuePresenter(private val inputRevenueInteract: InputRevenueIntera
 
     private fun loadCategoryInfo(categoryId: Int): Boolean {
         inputRevenueInteract.getCategoryInfo(categoryId)?.let {
+            ratingRategoryId = it.id
+            categoryRating = it.rating
             viewState.setCategoryName(it.titleId)
             return true
         }
@@ -46,7 +51,10 @@ class InputRevenuePresenter(private val inputRevenueInteract: InputRevenueIntera
             .doOnError { throwable ->
                 viewState.showToast("Error: ${throwable.localizedMessage}")
             }
-            .doOnSuccess { viewState.goBack() }
+            .doOnSuccess {
+                inputRevenueInteract.incrementCategoryRating(ratingRategoryId, categoryRating)
+                viewState.goBack()
+            }
             .subscribe()
             .let { disposables.add(it) }
     }

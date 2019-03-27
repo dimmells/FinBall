@@ -14,7 +14,10 @@ class RevenueCategoryPresenter(private val revenueCategoryInteract: RevenueCateg
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        categoryList.addAll(revenueCategoryInteract.getCategoryList())
+        categoryList.addAll(
+            revenueCategoryInteract.getCategoryList()
+                .sortedByDescending { it.rating }
+        )
     }
 
     override fun getItemsCount(): Int = categoryList.size
