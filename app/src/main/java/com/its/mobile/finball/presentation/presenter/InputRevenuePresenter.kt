@@ -37,7 +37,12 @@ class InputRevenuePresenter(private val inputRevenueInteract: InputRevenueIntera
         return false
     }
 
-    fun onSaveClick(amount: Float) {
+    fun onSaveClick(input: String) {
+        if (input.isEmpty())  {
+            viewState.showToast("Enter amount")
+            return
+        }
+        val amount = input.toFloat()
         inputRevenueInteract.saveRevenue(RevenueEntity(Calendar.getInstance().time, categoryId, amount))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

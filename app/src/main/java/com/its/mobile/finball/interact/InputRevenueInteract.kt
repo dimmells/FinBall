@@ -21,5 +21,4 @@ class InputRevenueInteract(
 
     fun saveRevenue(revenueEntity: RevenueEntity): Single<Long> = revenueDBManager.insert(revenueEntity)
 
-    fun getAll(): Single<List<RevenueEntity>> = revenueDBManager.getAll()
 }

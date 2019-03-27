@@ -21,49 +21,21 @@ class InputCostsPresenter(private val inputCostsInteract: InputCostsInteract) : 
         }
     }
 
-    fun onSaveClick(amount: Float) {
+    fun onSaveClick(input: String) {
+        if (input.isEmpty())  {
+            viewState.showToast("Enter amount")
+            return
+        }
+        val amount = input.toFloat()
         inputCostsInteract.saveRevenue(CostsEntity(Calendar.getInstance().time, category.id, amount))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError { throwable ->
                 viewState.showToast("Error: ${throwable.localizedMessage}")
             }
-            .doOnSuccess {
-                viewState.goBack()
-//                getAll()
-//                getByDay(Date(System.currentTimeMillis()))
-            }
+            .doOnSuccess { viewState.goBack() }
             .subscribe()
             .let { disposables.add(it) }
     }
 
-//    fun getAll() {
-//        inputCostsInteract.getAll()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribeBy(
-//                onSuccess = { list ->
-//                    Log.i("ROOM", "All Costs ${list.size}")
-//                    list.forEach {
-//                        Log.i("ROOM", "${it.date} ${it.categoryId} ${it.amount}")
-//                    }
-//                },
-//                onError = { Log.i("ROOM", "ERROR") })
-//            .let { disposables.add(it) }
-//    }
-//
-//    fun getByDay(day: Date) {
-//        inputCostsInteract.getByDay(day)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribeBy(
-//                onSuccess = { list ->
-//                    Log.i("ROOM", "ByDay Costs ${list.size}")
-//                    list.forEach {
-//                        Log.i("ROOM", "${it.date} ${it.categoryId} ${it.amount}")
-//                    }
-//                },
-//                onError = { Log.i("ROOM", "ERROR") })
-//            .let { disposables.add(it) }
-//    }
 }

@@ -13,7 +13,4 @@ class InputCostsInteract(private val costsCategoryManager: CostsCategoryManager,
 
     fun saveRevenue(costsEntity: CostsEntity): Single<Long> = costsDBManager.insert(costsEntity)
 
-    fun getAll() = costsDBManager.costsListObservable
-
-    fun getByDay(day: Date): Single<List<CostsEntity>> = costsDBManager.getByDay(day)
 }
