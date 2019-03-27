@@ -9,8 +9,7 @@ import dagger.Component
             ApplicationModule::class,
             RevenueCategoryManagerModule::class,
             CostsCategoryManagerModule::class,
-            DatabaseModule::class,
-            CategoryRatingDSModule::class
+            DatabaseModule::class
         ]
 )
 @ApplicationScope

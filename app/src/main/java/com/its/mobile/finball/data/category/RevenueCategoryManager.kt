@@ -1,10 +1,9 @@
 package com.its.mobile.finball.data.category
 
 import com.its.mobile.finball.R
-import com.its.mobile.finball.data.category.rating.CategoryRatingDataStore
 import com.its.mobile.finball.ui.item.RevenueCategoryItem
 
-class RevenueCategoryManager(private val categoryRatingDataStore: CategoryRatingDataStore) {
+class RevenueCategoryManager() {
 
     private val categoryList: ArrayList<CategoryEntity> = ArrayList()
 
@@ -14,38 +13,33 @@ class RevenueCategoryManager(private val categoryRatingDataStore: CategoryRating
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_SALARY,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_salary,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_SALARY)
+                R.string.revenue_category_salary
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_SPONSOR,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_sponsor,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_SPONSOR)
+                R.string.revenue_category_sponsor
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_BRIBE,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_bribe,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_BRIBE)
+                R.string.revenue_category_bribe
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_GIFT,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_gift,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_GIFT)
+                R.string.revenue_category_gift
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_DIVIDENDS,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_dividends,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_DIVIDENDS)
+                R.string.revenue_category_dividends
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_INVESTMENT,
                 R.drawable.ic_mtrl_chip_checked_circle,
                 R.string.revenue_category_investment,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_INVESTMENT),
+                0,
                 0f,
                 true
             ),
@@ -53,7 +47,7 @@ class RevenueCategoryManager(private val categoryRatingDataStore: CategoryRating
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_BUSINESS,
                 R.drawable.ic_mtrl_chip_checked_circle,
                 R.string.revenue_category_business,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_BUSINESS),
+                0,
                 0f,
                 true
             ),
@@ -61,39 +55,34 @@ class RevenueCategoryManager(private val categoryRatingDataStore: CategoryRating
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_REALTY,
                 R.drawable.ic_mtrl_chip_checked_circle,
                 R.string.revenue_category_realty,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_REALTY),
+                0,
                 0f,
                 true
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_INSURANCE,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_insurance,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_INSURANCE)
+                R.string.revenue_category_insurance
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_SECURITIES_SHARES,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_securities_shares,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_SECURITIES_SHARES)
+                R.string.revenue_category_securities_shares
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_CREDIT_BUTS,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_credit_buts,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_CREDIT_BUTS)
+                R.string.revenue_category_credit_buts
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_UNPREDICTABLE,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_unpredictable,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_UNPREDICTABLE)
+                R.string.revenue_category_unpredictable
             ),
             CategoryEntity(
                 RevenueCategoryItem.KEY_REVENUE_CATEGORY_GOV_BENEFIT,
                 R.drawable.ic_mtrl_chip_checked_circle,
-                R.string.revenue_category_gov_benefit,
-                categoryRatingDataStore.getRevenueCategoryRating(RevenueCategoryItem.KEY_REVENUE_CATEGORY_GOV_BENEFIT)
+                R.string.revenue_category_gov_benefit
             )
         ))
         return categoryList
@@ -106,6 +95,4 @@ class RevenueCategoryManager(private val categoryRatingDataStore: CategoryRating
             return if (it.size == 1) it[0] else null
         }
     }
-
-    fun updateCategoryRating(categoryId: Int, rating: Int) = categoryRatingDataStore.updateRevenueCategoryRating(categoryId, rating)
 }

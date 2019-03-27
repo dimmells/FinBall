@@ -10,4 +10,7 @@ interface RevenueCategoryView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun navigateToSubCategory(parentCategoryId: Int)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun notifyDataSetChanged()
 }

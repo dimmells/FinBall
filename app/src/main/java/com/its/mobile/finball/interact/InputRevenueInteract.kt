@@ -22,6 +22,4 @@ class InputRevenueInteract(
     fun saveRevenue(revenueEntity: RevenueEntity): Single<Long> = revenueDBManager.insert(revenueEntity)
 
     fun getAll(): Single<List<RevenueEntity>> = revenueDBManager.getAll()
-
-    fun incrementCategoryRating(categoryId: Int, rating: Int) = revenueCategoryManager.updateCategoryRating(categoryId, rating + 1)
 }
