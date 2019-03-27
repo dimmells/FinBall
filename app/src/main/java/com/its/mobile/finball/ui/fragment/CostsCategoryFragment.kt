@@ -56,4 +56,6 @@ class CostsCategoryFragment: BaseFragment(), CostsCategoryView {
     }
 
     override fun navigateToInputCostsAmount(categoryId: Int) { (router as MainRouter).navigateToInputCosts(categoryId) }
+
+    override fun notifyDataSetChanged() = categoryRecyclerAdapter.notifyDataSetChanged()
 }

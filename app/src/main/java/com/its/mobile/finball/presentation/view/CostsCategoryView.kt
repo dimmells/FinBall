@@ -7,4 +7,7 @@ interface CostsCategoryView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun navigateToInputCostsAmount(categoryId: Int)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun notifyDataSetChanged()
 }
