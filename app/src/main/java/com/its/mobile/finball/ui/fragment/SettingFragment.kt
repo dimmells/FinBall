@@ -27,15 +27,14 @@ import java.io.File
 class SettingFragment : BaseFragment(), SettingView {
 
     companion object {
-        const val STORAGE_PERMISSIONS_CODE = 1
-        const val PICKFILE_RERQUEST_CODE = 2
+        const val STORAGE_EXPORT_PERMISSIONS_CODE = 1
+        const val STORAGE_IMPORT_PERMISSIONS_CODE = 2
+        const val PICKFILE_RERQUEST_CODE = 3
+
+        const val SHARED_PROVIDER_AUTHORITY = BuildConfig.APPLICATION_ID + ".myfileprovider"
 
         fun newInstance(): SettingFragment = SettingFragment()
     }
-
-
-    private val SHARED_PROVIDER_AUTHORITY = BuildConfig.APPLICATION_ID + ".myfileprovider"
-    private val SHARED_FOLDER = "FinBall/backup"
 
     private val permissionsList =
         arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -59,11 +58,7 @@ class SettingFragment : BaseFragment(), SettingView {
         layout_setting_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
 
         button_setting_export.setOnClickListener { settingPresenter.onExportClick() }
-        button_setting_import.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "*/*"
-            startActivityForResult(intent, PICKFILE_RERQUEST_CODE)
-        }
+        button_setting_import.setOnClickListener { settingPresenter.onImportClick() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -98,7 +93,7 @@ class SettingFragment : BaseFragment(), SettingView {
         startActivity(chooserIntent)
     }
 
-    override fun checkPermissions() {
+    override fun checkPermissions(requestCode: Int) {
         isPermissionsGranted = true
         context?.let { context ->
             permissionsList.forEach {
@@ -106,14 +101,22 @@ class SettingFragment : BaseFragment(), SettingView {
                     isPermissionsGranted = false
             }
         }
-        if (isPermissionsGranted)
-            settingPresenter.onPermissionsGranted()
+        if (isPermissionsGranted) {
+            when (requestCode) {
+                STORAGE_EXPORT_PERMISSIONS_CODE -> settingPresenter.prepareExportData()
+                STORAGE_IMPORT_PERMISSIONS_CODE -> settingPresenter.startImportData()
+            }
+        }
         else {
-            requestPermissions(permissionsList, STORAGE_PERMISSIONS_CODE)
+            requestPermissions(permissionsList, requestCode)
         }
     }
 
-    override fun setImport(text: String) {
-        text_view_setting_import_text.text = text
+    override fun chooseImportFile() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*"
+        startActivityForResult(intent, PICKFILE_RERQUEST_CODE)
     }
+
+    override fun setImport(text: String) { text_view_setting_import_text.text = text }
 }

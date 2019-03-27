@@ -15,8 +15,11 @@ interface SettingView: BaseMvpView {
     fun shareBackupData(path: String)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun checkPermissions()
+    fun checkPermissions(requestCode: Int)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun setImport(text: String)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun chooseImportFile()
 }

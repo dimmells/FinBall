@@ -23,9 +23,9 @@ class SettingInteract(
 ) {
 
     companion object {
-        private const val COSTS_ARRAY_TITLE = "\"costs\": "
-        private const val REVENUE_ARRAY_TITLE = "\"revenue\": "
-        private const val SUBCATEGORY_ARRAY_TITLE = "\"subCategory\": "
+        const val COSTS_ARRAY_TITLE = "costs"
+        const val REVENUE_ARRAY_TITLE = "revenue"
+        const val SUBCATEGORY_ARRAY_TITLE = "subCategory"
     }
 
     private var jsonCostsExportList: String = ""
@@ -37,7 +37,7 @@ class SettingInteract(
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess { costsList ->
             val gson = GsonBuilder().setPrettyPrinting().create()
-            jsonCostsExportList = COSTS_ARRAY_TITLE.plus(gson.toJson(costsList))
+            jsonCostsExportList = "\"" + COSTS_ARRAY_TITLE + "\": ".plus(gson.toJson(costsList))
             getRevenue()
         }
 
@@ -46,7 +46,7 @@ class SettingInteract(
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess { revenueList ->
             val gson = GsonBuilder().setPrettyPrinting().create()
-            jsonRevenueExportList = REVENUE_ARRAY_TITLE.plus(gson.toJson(revenueList))
+            jsonRevenueExportList = "\"" + REVENUE_ARRAY_TITLE + "\": ".plus(gson.toJson(revenueList))
             getSubCategories()
         }
 
@@ -55,7 +55,7 @@ class SettingInteract(
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess { subCategoryList ->
             val gson = GsonBuilder().setPrettyPrinting().create()
-            jsonSubCategoryExportList = SUBCATEGORY_ARRAY_TITLE.plus(gson.toJson(subCategoryList))
+            jsonSubCategoryExportList = "\"" + SUBCATEGORY_ARRAY_TITLE + "\": ".plus(gson.toJson(subCategoryList))
         }
 
     fun writeToFile(pathDir: File): Single<String> =

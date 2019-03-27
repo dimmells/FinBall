@@ -6,6 +6,8 @@ import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import com.its.mobile.finball.data.database.subCategory.SubCategoryEntity
 import com.its.mobile.finball.interact.SettingInteract
 import com.its.mobile.finball.presentation.view.SettingView
+import com.its.mobile.finball.ui.fragment.SettingFragment
+import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.json.JSONArray
@@ -16,17 +18,17 @@ import java.util.*
 @InjectViewState
 class SettingPresenter(private val settingInteract: SettingInteract): BaseMvpPresenter<SettingView>() {
 
-    fun onExportClick() {
-        viewState.checkPermissions()
-    }
+    private lateinit var jsonCostsImportList: JSONArray
+    private lateinit var jsonRevenueImportList: JSONArray
+    private lateinit var jsonSubCategoryImportList: JSONArray
 
-    fun onPermissionsGranted() {
-        prepareExportData()
-    }
+    fun onExportClick() { viewState.checkPermissions(SettingFragment.STORAGE_EXPORT_PERMISSIONS_CODE) }
 
-    private fun prepareExportData() {
-        loadCosts()
-    }
+    fun onImportClick() { viewState.checkPermissions(SettingFragment.STORAGE_IMPORT_PERMISSIONS_CODE) }
+
+    fun prepareExportData() { loadCosts() }
+
+    fun startImportData() { viewState.chooseImportFile() }
 
     private fun loadCosts() {
         settingInteract.getCosts()
@@ -83,13 +85,25 @@ class SettingPresenter(private val settingInteract: SettingInteract): BaseMvpPre
     private fun parseFromJson(jsonString: String) {
         val jsonObject = JSONObject(jsonString)
 
-        var jsonCostsImportList: JSONArray = jsonObject.getJSONArray("costs")
-        var jsonRevenueImportList: JSONArray = jsonObject.getJSONArray("revenue")
-        var jsonSubCategoryImportList: JSONArray = jsonObject.getJSONArray("subCategory")
+        Completable.fromAction {
+            jsonCostsImportList = jsonObject.getJSONArray(SettingInteract.COSTS_ARRAY_TITLE)
+            jsonRevenueImportList = jsonObject.getJSONArray(SettingInteract.REVENUE_ARRAY_TITLE)
+            jsonSubCategoryImportList = jsonObject.getJSONArray(SettingInteract.SUBCATEGORY_ARRAY_TITLE)
 
+            insertSubCategoryArray()
+            insertCostsArray()
+            insertRevenueArray()
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { viewState.showToast("Import successful") },
+                { viewState.showToast(it.localizedMessage) }
+            )
+            .let { disposables.add(it) }
     }
 
-    fun insertSubCategoryArray(jsonSubCategoryImportList: JSONArray) {
+    private fun insertSubCategoryArray() {
         for (i in 0 until jsonSubCategoryImportList.length()) {
             val item = jsonSubCategoryImportList.getJSONObject(i)
             settingInteract.insertSubCategory(
@@ -107,7 +121,7 @@ class SettingPresenter(private val settingInteract: SettingInteract): BaseMvpPre
         }
     }
 
-    fun insertCostsArray(jsonCostsImportList: JSONArray) {
+    private fun insertCostsArray() {
         for (i in 0 until jsonCostsImportList.length()) {
             val item = jsonCostsImportList.getJSONObject(i)
             settingInteract.insertCosts(
@@ -125,7 +139,7 @@ class SettingPresenter(private val settingInteract: SettingInteract): BaseMvpPre
         }
     }
 
-    fun insertRevenueArray(jsonRevenueImportList: JSONArray) {
+    private fun insertRevenueArray() {
         for (i in 0 until jsonRevenueImportList.length()) {
             val item = jsonRevenueImportList.getJSONObject(i)
             settingInteract.insertRevenue(
