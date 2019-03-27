@@ -8,4 +8,7 @@ interface YearDiagramView: BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun setChartData(records: List<RevenueEntity>)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun showToast(text: String)
 }

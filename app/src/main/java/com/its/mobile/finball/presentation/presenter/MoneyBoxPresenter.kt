@@ -211,5 +211,6 @@ class MoneyBoxPresenter(private val moneyBoxInteract: MoneyBoxInteract): BaseMvp
 
     }
 
-    private fun calculatePricePerWorkHour() = viewState.setPricePerWorkHour("${costsAmountForLastMonth / 160}/час")
+    private fun calculatePricePerWorkHour() =
+        viewState.setPricePerWorkHour(String.format("%.2f", costsAmountForLastMonth / 160) + "/час")
 }

@@ -1,6 +1,5 @@
 package com.its.mobile.finball.presentation.presenter
 
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.its.mobile.finball.data.database.costs.CostsEntity
 import com.its.mobile.finball.data.database.revenue.RevenueEntity
@@ -67,7 +66,6 @@ class MonthDiagramPresenter(private val monthDiagramInteract: MonthDiagramIntera
         var amount = 0f
         var date = Date()
         revenueList.forEach {
-            Log.i("REVENUE", "${it.date} ${it.amount}")
             if (it.date.year == date.year &&
                 it.date.month == date.month &&
                 SimpleDateFormat("dd", Locale.ROOT).format(date).toInt() == SimpleDateFormat("dd", Locale.ROOT).format(
@@ -83,14 +81,7 @@ class MonthDiagramPresenter(private val monthDiagramInteract: MonthDiagramIntera
                 date = it.date
             }
         }
-        if (amount > 0f) {
-            newList.add(RevenueEntity(date, 0, amount))
-        }
-        Log.i("REVENUE", "----------------")
-        newList.forEach {
-            Log.i("REVENUE", "new ${it.date} ${it.amount}")
-        }
-        Log.i("REVENUE", "----------------")
+        if (amount > 0f) newList.add(RevenueEntity(date, 0, amount))
         return newList
     }
 
@@ -99,7 +90,6 @@ class MonthDiagramPresenter(private val monthDiagramInteract: MonthDiagramIntera
         var amount = 0f
         var date = Date()
         costsList.forEach {
-            Log.i("COSTS", "${it.date} ${it.amount}")
             if (it.date.year == date.year &&
                 it.date.month == date.month &&
                 SimpleDateFormat("dd", Locale.ROOT).format(date).toInt() == SimpleDateFormat("dd", Locale.ROOT).format(
@@ -115,14 +105,7 @@ class MonthDiagramPresenter(private val monthDiagramInteract: MonthDiagramIntera
                 date = it.date
             }
         }
-        if (amount > 0f) {
-            newList.add(CostsEntity(date, 0, amount))
-        }
-        Log.i("COSTS", "----------------")
-        newList.forEach {
-            Log.i("COSTS", "new ${it.date} ${it.amount}")
-        }
-        Log.i("COSTS", "----------------")
+        if (amount > 0f) newList.add(CostsEntity(date, 0, amount))
         return newList
     }
 

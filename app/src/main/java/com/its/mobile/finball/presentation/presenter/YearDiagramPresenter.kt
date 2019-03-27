@@ -1,57 +1,139 @@
 package com.its.mobile.finball.presentation.presenter
 
 import com.arellomobile.mvp.InjectViewState
-import com.its.mobile.finball.data.database.costs.CostsEntity
 import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import com.its.mobile.finball.interact.YearDiagramInteract
 import com.its.mobile.finball.presentation.view.YearDiagramView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 @InjectViewState
 class YearDiagramPresenter(private val yearDiagramInteract: YearDiagramInteract): BaseMvpPresenter<YearDiagramView>() {
 
-    private val revenueData: ArrayList<RevenueEntity> = ArrayList()
-    private val costsData: ArrayList<CostsEntity> = ArrayList()
+    private val revenueData: HashMap<String, Float> = hashMapOf()
+    private val costsData: HashMap<String, Float> = hashMapOf()
     private val dividedData: ArrayList<RevenueEntity> = ArrayList()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         loadRevenueData()
-        loadCostsData()
-        divideData()
     }
 
     private fun loadRevenueData() {
-        with(revenueData) {
-            add(RevenueEntity(Date(969656400000), 1, 250.90f))
-            add(RevenueEntity(Date(969742800000), 1, 500f))
-            add(RevenueEntity(Date(969742800000), 1, 0.90f))
-            add(RevenueEntity(Date(969915600000), 1, 0f))
-            add(RevenueEntity(Date(970002000000), 1, 1250.40f))
-            add(RevenueEntity(Date(970088400000), 1, 25f))
-            add(RevenueEntity(Date(970174800000), 1, 50.45f))
-            true
-        }
+        yearDiagramInteract.loadRevenue()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { revenueList ->
+                    revenueData.clear()
+
+                    var amount = 0f
+                    var date = Date()
+                    revenueList.forEach {
+                        if (it.date.year == date.year &&
+                            it.date.month == date.month) {
+                            amount += it.amount
+                        } else {
+                            if (amount > 0f) {
+                                revenueData[SimpleDateFormat("MM.yyyy", Locale.ROOT).format(date)] = amount
+                            }
+                            amount = it.amount
+                            val calendar = Calendar.getInstance()
+                            calendar.time = it.date
+                            calendar.set(Calendar.DAY_OF_MONTH, 1)
+                            calendar.set(Calendar.HOUR, 12)
+                            calendar.set(Calendar.MINUTE, 12)
+                            calendar.set(Calendar.SECOND, 12)
+                            date = calendar.time
+
+                        }
+                    }
+                    if (amount > 0f) revenueData[SimpleDateFormat("MM.yyyy", Locale.ROOT).format(date)] = amount
+                    println("rev" + revenueData.size)
+
+                    loadCostsData()
+                },
+                { viewState.showToast(it.localizedMessage) }
+            )
+            .let { disposables.add(it) }
     }
 
     private fun loadCostsData() {
-        with(costsData) {
-            add(CostsEntity(Date(969656400000), 1, 25.90f))
-            add(CostsEntity(Date(969742800000), 1, 50f))
-            add(CostsEntity(Date(969742800000), 1, 10.90f))
-            add(CostsEntity(Date(969915600000), 1, 20f))
-            add(CostsEntity(Date(970002000000), 1, 150.40f))
-            add(CostsEntity(Date(970088400000), 1, 205f))
-            add(CostsEntity(Date(970174800000), 1, 540.45f))
-            true
-        }
+        yearDiagramInteract.loadCosts()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { costsList ->
+                    costsData.clear()
+
+                    var amount = 0f
+                    var date = Date()
+                    costsList.forEach {
+                        if (it.date.year == date.year &&
+                            it.date.month == date.month) {
+                            amount += it.amount
+                        } else {
+                            if (amount > 0f) {
+                                costsData[SimpleDateFormat("MM.yyyy", Locale.ROOT).format(date)] = amount
+                            }
+                            amount = it.amount
+                            val calendar = Calendar.getInstance()
+                            calendar.time = it.date
+                            calendar.set(Calendar.DAY_OF_MONTH, 1)
+                            calendar.set(Calendar.HOUR, 12)
+                            calendar.set(Calendar.MINUTE, 12)
+                            calendar.set(Calendar.SECOND, 12)
+                            date = calendar.time
+                        }
+                    }
+                    if (amount > 0f) costsData[SimpleDateFormat("MM.yyyy", Locale.ROOT).format(date)] = amount
+                    println("costs" + costsData.size)
+
+                    divideData()
+                },
+                { viewState.showToast(it.localizedMessage) }
+            )
+            .let { disposables.add(it) }
     }
 
     private fun divideData() {
-        revenueData.forEachIndexed { index, revenueEntity ->
-            dividedData.add(RevenueEntity(revenueEntity.date, 1, revenueEntity.amount - costsData[index].amount))
+        dividedData.clear()
+
+        revenueData.forEach { revenue ->
+            val costs = costsData[revenue.key]
+            if (costs != null) {
+                dividedData.add(RevenueEntity(SimpleDateFormat("MM.yyyy", Locale.ROOT).parse(revenue.key), 0, revenue.value - costs))
+            }
         }
+        divideCosts()
+        revenueData.forEach { revenue ->
+            dividedData.add(RevenueEntity(SimpleDateFormat("MM.yyyy", Locale.ROOT).parse(revenue.key), 0, revenue.value))
+        }
+        costsData.forEach { costs ->
+            dividedData.add(RevenueEntity(SimpleDateFormat("MM.yyyy", Locale.ROOT).parse(costs.key), 0, -costs.value))
+        }
+
+        dividedData.sortBy { it.date }
         viewState.setChartData(dividedData)
+    }
+
+    private fun divideCosts() {
+
+        costsData.forEach { costs ->
+            val key = costs.key
+            if (revenueData.remove(key) != null) {
+                costsData.remove(key)
+                divideCosts()
+                return
+            }
+            val revenue = revenueData[costs.key]
+            if (revenue != null) {
+                dividedData.add(RevenueEntity(SimpleDateFormat("MM.yyyy", Locale.ROOT).parse(costs.key), 0, revenue - costs.value))
+            }
+        }
     }
 }

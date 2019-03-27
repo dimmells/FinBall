@@ -99,10 +99,7 @@ class YearDiagramFragment : BaseFragment(), YearDiagramView {
         dataSet.clear()
         labels.clear()
 
-        if (records.isEmpty()) {
-            line_chart_year_diagram.visibility = View.INVISIBLE
-            return
-        } else line_chart_year_diagram.visibility = View.VISIBLE
+        if (records.isEmpty()) return
 
         records.forEachIndexed { i, entity ->
             dataSet.addEntry(Entry(i.toFloat(), entity.amount, entity.date))

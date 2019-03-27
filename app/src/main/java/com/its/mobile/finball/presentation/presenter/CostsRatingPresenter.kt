@@ -19,15 +19,6 @@ class CostsRatingPresenter(private val costsRatingInteract: CostsRatingInteract)
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        insert(CostsEntity(Date(969656400000), 1, 25.90f))
-        insert(CostsEntity(Date(969742700000), 3, 50f))
-        insert(CostsEntity(Date(969742800000), 4, 10.90f))
-        insert(CostsEntity(Date(969915600000), 3, 20f))
-        insert(CostsEntity(Date(970002000000), 1, 150.40f))
-        insert(CostsEntity(Date(970088400000), 3, 205f))
-        insert(CostsEntity(Date(970174800000), 1, 540.45f))
-        //DELETE!!!!!!!!!!!!!!!!!!!!!
         costsCategoryList.addAll(costsRatingInteract.getCostsCategories())
         loadCostsList()
     }

@@ -17,15 +17,6 @@ class RevenueRatingPresenter(private val revenueRatingInteract: RevenueRatingInt
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            insert(RevenueEntity(java.util.Date(969656400000), 1, 250.90f))
-            insert(RevenueEntity(java.util.Date(969743800000), 4, 500f))
-            insert(RevenueEntity(java.util.Date(969742800000), 2, 0.90f))
-            insert(RevenueEntity(java.util.Date(969915600000), 2, 0f))
-            insert(RevenueEntity(java.util.Date(970002000000), 1, 1250.40f))
-            insert(RevenueEntity(java.util.Date(970088400000), 1, 25f))
-            insert(RevenueEntity(java.util.Date(970174800000), 1, 50.45f))
-        //DELETE!!!!!!!!!!!!!!!!!!!!!
         revenueCategoryList.addAll(revenueRatingInteract.getRevenueCategories())
         loadRevenueList()
     }

@@ -28,6 +28,7 @@ class MenuPresenter(private val menuInteract: MenuInteract): BaseMvpPresenter<Me
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { revenueList ->
+                    revenue = 0f
                     revenueList.forEach { revenue += it.amount }
                     getTotalCostsFroMonth()
                 },
@@ -42,6 +43,7 @@ class MenuPresenter(private val menuInteract: MenuInteract): BaseMvpPresenter<Me
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { costsList ->
+                    costs = 0f
                     costsList.forEach { costs += it.amount }
                     viewState.setupChart(mutableListOf(PieEntry(revenue, "$revenue"), PieEntry(costs, "$costs")))
                 },

@@ -1,7 +1,10 @@
 package com.its.mobile.finball.ui.fragment
 
 import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +26,8 @@ import kotlinx.android.synthetic.main.fragment_month_diagram.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.formatter.IFillFormatter
 
 class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
 
@@ -52,17 +57,17 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
 
         revenueDataSet = LineDataSet(ArrayList<Entry>(), getString(R.string.revenue))
         costsDataSet = LineDataSet(ArrayList<Entry>(), getString(R.string.costs))
-        setupLineChart(line_chart_month_diagram_revenue, revenueDataSet, Color.GREEN)
-        setupLineChart(line_chart_month_diagram_costs, costsDataSet, Color.RED)
+        setupLineChart(line_chart_month_diagram_revenue, revenueDataSet, Color.GREEN, R.drawable.revenue_chart_gradient)
+        setupLineChart(line_chart_month_diagram_costs, costsDataSet, Color.RED, R.drawable.costs_chart_gradient)
     }
 
-    private fun setupLineChart(lineChart: LineChart, dataSet: LineDataSet, color: Int) {
+    private fun setupLineChart(lineChart: LineChart, dataSet: LineDataSet, color: Int, gradientId: Int) {
         lineChart.apply {
             legend.isEnabled = false
             isDoubleTapToZoomEnabled = false
             description.text = ""
             setTouchEnabled(true)
-            setScaleEnabled(false)
+            setScaleEnabled(true)
             axisRight.isEnabled = false
 
             with(axisLeft) {
@@ -79,10 +84,10 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
                 granularity = 1f
             }
         }
-        setupDataSet(dataSet, color)
+        setupDataSet(dataSet, color, gradientId)
     }
 
-    private fun setupDataSet(dataSet: LineDataSet, lineColor: Int) {
+    private fun setupDataSet(dataSet: LineDataSet, lineColor: Int, gradientId: Int) {
         val context = context ?: return
         dataSet.apply {
             valueTextColor = Color.BLACK
@@ -95,7 +100,8 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
             lineWidth = 2.5f
             circleHoleRadius = 1.75f
             circleRadius = 3.5f
-
+            setDrawFilled(true)
+            fillDrawable = ContextCompat.getDrawable(context, gradientId)
         }
     }
 
@@ -104,10 +110,7 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
         revenueDataSet.clear()
         revenueLabels.clear()
 
-        if (records.isEmpty()) {
-            line_chart_month_diagram_revenue.visibility = View.INVISIBLE
-            return
-        } else line_chart_month_diagram_revenue.visibility = View.VISIBLE
+        if (records.isEmpty()) return
 
         records.forEachIndexed { i, entity ->
             revenueDataSet.addEntry(Entry(i.toFloat(), entity.amount, entity.date))
@@ -116,8 +119,8 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
 
         with(line_chart_month_diagram_revenue) {
             data =
-                com.github.mikephil.charting.data.LineData(kotlin.collections.listOf(revenueDataSet))
-            setVisibleXRangeMaximum(5f)
+                LineData(kotlin.collections.listOf(revenueDataSet))
+            setVisibleXRangeMaximum(7f)
             moveViewToX(data.xMax)
             xAxis.valueFormatter = IAxisValueFormatter { value, _ ->
                 value.toInt()
@@ -126,7 +129,6 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
                     ?: ""
             }
         }
-
     }
 
     override fun setCostsChartData(records: List<CostsEntity>) {
@@ -134,10 +136,7 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
         costsDataSet.clear()
         costsLabels.clear()
 
-        if (records.isEmpty()) {
-            line_chart_month_diagram_costs.visibility = View.INVISIBLE
-            return
-        } else line_chart_month_diagram_costs.visibility = View.VISIBLE
+        if (records.isEmpty()) return
 
         records.forEachIndexed { i, entity ->
             costsDataSet.addEntry(Entry(i.toFloat(), entity.amount, entity.date))
@@ -145,8 +144,7 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
         }
 
         with(line_chart_month_diagram_costs) {
-            data =
-                com.github.mikephil.charting.data.LineData(kotlin.collections.listOf(costsDataSet))
+            data = LineData(kotlin.collections.listOf(costsDataSet))
             setVisibleXRangeMaximum(5f)
             moveViewToX(data.xMax)
             xAxis.valueFormatter = IAxisValueFormatter { value, _ ->
