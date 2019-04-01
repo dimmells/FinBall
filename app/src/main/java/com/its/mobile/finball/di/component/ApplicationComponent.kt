@@ -5,14 +5,14 @@ import com.its.mobile.finball.di.scope.ApplicationScope
 import dagger.Component
 
 @Component(
-        modules = [
-            ApplicationModule::class,
-            RevenueCategoryManagerModule::class,
-            CostsCategoryManagerModule::class,
-            DatabaseModule::class,
-            SettingPropertiesModule::class,
-            SettingManagerModule::class
-        ]
+    modules = [
+        ApplicationModule::class,
+        RevenueCategoryManagerModule::class,
+        CostsCategoryManagerModule::class,
+        DatabaseModule::class,
+        SettingPropertiesModule::class,
+        SettingManagerModule::class
+    ]
 )
 @ApplicationScope
 interface ApplicationComponent {
@@ -48,6 +48,8 @@ interface ApplicationComponent {
     fun revenueSubCategoryComponent(revenueSubCategoryModule: RevenueSubCategoryModule): RevenueSubCategoryComponent
 
     fun settingComponent(settingModule: SettingModule): SettingComponent
+
+    fun writeUsComponent(writeUsModule: WriteUsModule): WriteUsComponent
 
 }
 

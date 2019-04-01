@@ -35,4 +35,7 @@ interface SettingView: BaseMvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun navigateToAboutApp()
 
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToWriteUs()
+
 }

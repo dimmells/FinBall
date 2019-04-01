@@ -55,6 +55,8 @@ class MainActivity : BaseActivity(), MainView, MainRouter {
 
     override fun navigateToAboutApp() = setFragment(AboutAppFragment.newInstance(), true, true)
 
+    override fun navigateToWriteUs() = setFragment(WriteUsFragment.newInstance(), true, true)
+
     private fun setFragment(fragment: Fragment, addToBackStack: Boolean, menuAnimation: Boolean = false) {
         supportFragmentManager.beginTransaction()
             .apply {

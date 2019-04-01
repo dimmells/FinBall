@@ -19,4 +19,6 @@ interface MainRouter: BaseRouter {
     fun navigateToSetting()
 
     fun navigateToAboutApp()
+
+    fun navigateToWriteUs()
 }
