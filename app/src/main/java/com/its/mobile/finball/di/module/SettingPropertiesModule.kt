@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.its.mobile.finball.data.setting.SettingPropertiesDataStore
 import com.its.mobile.finball.data.setting.SettingRxProperties
 import com.its.mobile.finball.di.scope.ApplicationScope
+import com.its.mobile.finball.ui.item.SPItem
 import dagger.Module
 import dagger.Provides
 import javax.inject.Qualifier
@@ -15,7 +16,7 @@ class SettingPropertiesModule {
     @Provides
     @ApplicationScope
     @SettingPropertiesQualifier
-    fun provideSharedPreferences(context: Context): SharedPreferences = context.getSharedPreferences("SettingProperty", Context.MODE_PRIVATE)
+    fun provideSharedPreferences(context: Context): SharedPreferences = context.getSharedPreferences(SPItem.SETTING_PROPERTY, Context.MODE_PRIVATE)
 
     @Provides
     @ApplicationScope

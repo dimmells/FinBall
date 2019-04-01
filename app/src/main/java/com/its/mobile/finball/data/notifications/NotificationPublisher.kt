@@ -13,14 +13,23 @@ import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
 import com.its.mobile.finball.R
 import com.its.mobile.finball.ui.activity.MainActivity
+import com.its.mobile.finball.ui.item.SPItem
+import com.its.mobile.finball.ui.item.SettingItem
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NotificationPublisher : BroadcastReceiver() {
 
     private var notification: Notification? = null
+    private var isNotificationsSoundEnabled: Boolean = true
 
     override fun onReceive(context: Context, intent: Intent) {
+
+        val sharedPreferences = context.getSharedPreferences(SPItem.SETTING_PROPERTY, Context.MODE_PRIVATE)
+        val isNotificationsEnabled: Boolean = sharedPreferences.getBoolean(SettingItem.NOTIFICATIONS, true)
+        isNotificationsSoundEnabled = sharedPreferences.getBoolean(SettingItem.NOTIFICATIONS_SOUND, true)
+
+        if (!isNotificationsEnabled) return
 
         var channelId = ""
         var channelName = ""
@@ -32,33 +41,26 @@ class NotificationPublisher : BroadcastReceiver() {
             (currentTime.time.hours in 9..11 || currentTime.time.hours in 19..21)) {
             val title = "Копилка"
             val content = "Сколько Вы собрали за месяц, заполните копилку"
-            channelId = "money_box_channel"
-            channelName = "Money Box channel"
+            channelId = if (isNotificationsSoundEnabled) "money_box_channel_default" else "money_box_channel_low"
+            channelName = if (isNotificationsSoundEnabled) "Money Box channel" else "Money Box channel Mute"
             id = 1
             notification = getNotification(context, title, content, channelId)
         } else if (Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_WEEK_IN_MONTH) / 3 == 0 &&
             (currentTime.time.hours in 9..11 || currentTime.time.hours in 20..21)) {
             val title = "Сохранение"
             val content = "Сделайте сохранение данных"
-            channelId = "money_box_channel"
-            channelName = "Money Box channel"
-            id = 1
+            channelId = if (isNotificationsSoundEnabled) "money_box_channel_default" else "money_box_channel_low"
+            channelName = if (isNotificationsSoundEnabled) "Money Box channel" else "Money Box channel Mute"
+            id = 2
             notification = getNotification(context, title, content, channelId)
         } else if (currentTime.time.hours in 14..15 || currentTime.time.hours in 19..21) {
             val title = "Расходы, доходы"
             val content = "Не забывайте сохранять свои доходы, расходы"
-            channelId = "every_day_channel"
-            channelName = "Every Day channel"
-            id = 2
-             notification = getNotification(context, title, content, channelId)
+            channelId = if (isNotificationsSoundEnabled) "every_day_channel_default" else "every_day_channel_low"
+            channelName = if (isNotificationsSoundEnabled) "Every Day channel" else "Every Day channel Mute"
+            id = 3
+            notification = getNotification(context, title, content, channelId)
         }
-
-        val title = "Расходы, доходы ${Calendar.DAY_OF_WEEK_IN_MONTH} ${Calendar.DAY_OF_WEEK}"
-        val content = "Не забывайте сохранять свои доходы, расходы"
-        channelId = "every_day_channel"
-        channelName = "Every Day channel"
-        id = 2
-        notification = getNotification(context, title, content, channelId)
 
         notification?.let { notification -> sendNotification(context, notification, channelId, channelName, id) }
     }
@@ -67,7 +69,7 @@ class NotificationPublisher : BroadcastReceiver() {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_HIGH// else NotificationManager.IMPORTANCE_LOW
+            val importance = if (isNotificationsSoundEnabled) NotificationManager.IMPORTANCE_DEFAULT else NotificationManager.IMPORTANCE_LOW
             val channel = NotificationChannel(channelId, channelName, importance)
             notificationManager.createNotificationChannel(channel)
         }
@@ -84,10 +86,12 @@ class NotificationPublisher : BroadcastReceiver() {
             .setSmallIcon(R.drawable.ic_mtrl_chip_checked_circle)
             .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
             .setContentTitle(notificationTitle)
-            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
             .setContentText(notificationContent)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
+
+        if (isNotificationsSoundEnabled)  { notificationBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)) }
+
         return notificationBuilder.build()
     }
 }
