@@ -64,7 +64,7 @@ class SettingPresenter(private val settingInteract: SettingInteract): BaseMvpPre
                 SettingItem.RATE_APP -> viewState.startRateIntent()
                 SettingItem.SHARE_APP -> viewState.shareApp()
                 SettingItem.WRITE_US -> viewState.showToast("Write us")
-                SettingItem.ABOUT_APP -> viewState.showToast("About")
+                SettingItem.ABOUT_APP -> viewState.navigateToAboutApp()
             }
         }
     }

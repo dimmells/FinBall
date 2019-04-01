@@ -17,4 +17,6 @@ interface MainRouter: BaseRouter {
     fun navigateToSubCategoryList(parentCategoryId: Int)
 
     fun navigateToSetting()
+
+    fun navigateToAboutApp()
 }

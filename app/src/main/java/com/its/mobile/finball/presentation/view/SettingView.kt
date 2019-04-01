@@ -32,4 +32,7 @@ interface SettingView: BaseMvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun shareApp()
 
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToAboutApp()
+
 }

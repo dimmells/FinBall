@@ -22,6 +22,7 @@ import com.its.mobile.finball.di.module.SettingModule
 import com.its.mobile.finball.presentation.presenter.SettingPresenter
 import com.its.mobile.finball.presentation.view.SettingView
 import com.its.mobile.finball.ui.adapter.SettingsRecyclerAdapter
+import com.its.mobile.finball.ui.navigation.MainRouter
 import kotlinx.android.synthetic.main.fragment_setting.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import java.io.File
@@ -146,4 +147,6 @@ class SettingFragment : BaseFragment(), SettingView {
         } catch (e: Exception) {
         }
     }
+
+    override fun navigateToAboutApp() = (router as MainRouter).navigateToAboutApp()
 }

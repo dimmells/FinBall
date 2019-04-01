@@ -43,18 +43,17 @@ class MainActivity : BaseActivity(), MainView, MainRouter {
 
     override fun navigateToCostsCategory() = setFragment(CostsCategoryFragment.newInstance(), true, true)
 
-    override fun navigateToInputRevenue(categoryId: Int) =
-        setFragment(InputRevenueFragment.newInstance(categoryId), true, true)
+    override fun navigateToInputRevenue(categoryId: Int) = setFragment(InputRevenueFragment.newInstance(categoryId), true, true)
 
-    override fun navigateToInputCosts(categoryId: Int) =
-        setFragment(InputCostsFragment.newInstance(categoryId), true, true)
+    override fun navigateToInputCosts(categoryId: Int) = setFragment(InputCostsFragment.newInstance(categoryId), true, true)
 
     override fun navigateToAnalytic() = setFragment(AnalyticPagerFragment.newInstance(), true, true)
 
-    override fun navigateToSubCategoryList(parentCategoryId: Int) =
-        setFragment(RevenueSubCategoryFragment.newInstance(parentCategoryId), true, true)
+    override fun navigateToSubCategoryList(parentCategoryId: Int) = setFragment(RevenueSubCategoryFragment.newInstance(parentCategoryId), true, true)
 
     override fun navigateToSetting() = setFragment(SettingFragment.newInstance(), true, true)
+
+    override fun navigateToAboutApp() = setFragment(AboutAppFragment.newInstance(), true, true)
 
     private fun setFragment(fragment: Fragment, addToBackStack: Boolean, menuAnimation: Boolean = false) {
         supportFragmentManager.beginTransaction()
