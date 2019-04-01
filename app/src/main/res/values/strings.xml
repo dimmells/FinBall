@@ -55,4 +55,43 @@
     </string>
     <string name="money_box_fin_independency_title">Расчет финансовой независимости</string>
     <string name="money_box_price_per_work_hour_title">Стоимость работы в час</string>
+
+    <string-array name="quote">
+        <item>Жизнь — игра, а деньги — способ вести счет.</item>
+        <item>Деньги — это время.</item>
+        <item>Нельзя купить счастье за деньги, но можно арендовать.</item>
+        <item>Деньги не дают счастья, но каждый хочет убедиться в этом сам.</item>
+        <item>Я знаю, нельзя иметь всего сразу, поэтому я начну с малого — с денег.</item>
+        <item>Деньги насквозь пропитаны нашей кровью.</item>
+        <item>Говорят, что деньги — корень всякого зла. То же самое можно сказать о безденежье.</item>
+        <item>Единственное, что можно делать без денег, — это долги.</item>
+        <item>Деньги всегда есть, только карманы меняются.</item>
+        <item>Нельзя гоняться за деньгами — нужно идти им навстречу.</item>
+        <item>Только деньги могут помочь нам забыть о том. что мы небогаты.</item>
+        <item>Деньги – хороший слуга, но плохой хозяин.</item>
+    </string-array>
+
+    <string-array name="quote_author">
+        <item>Тед Тёрнер</item>
+        <item>Джордж Гиссинг</item>
+        <item>Американское изречение</item>
+        <item>Стефан Киселевский</item>
+        <item>Януш Васильковский</item>
+        <item>Сенека</item>
+        <item>Сэмюэл Батлер</item>
+        <item>Хайнц Шенк</item>
+        <item>Гертруда Стайн</item>
+        <item>Аристотель Онассис</item>
+        <item>Филипп Бувар</item>
+        <item>Ф. Бэкон</item>
+    </string-array>
+
+    <string name="setting_notifications">Уведомления</string>
+    <string name="setting_notifications_sound">Звук уведомления</string>
+    <string name="setting_import_data">Импортировать данные</string>
+    <string name="setting_export_data">Экспортировать данные</string>
+    <string name="setting_write_us">Напиши нам</string>
+    <string name="setting_rate_app">Оцени приложение</string>
+    <string name="setting_share_app">Поделись приложением</string>
+    <string name="setting_about_app">О приложении</string>
 </resources>

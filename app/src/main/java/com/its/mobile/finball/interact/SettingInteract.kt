@@ -7,6 +7,10 @@ import com.its.mobile.finball.data.database.revenue.RevenueDBManager
 import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import com.its.mobile.finball.data.database.subCategory.SubCategoryDBManager
 import com.its.mobile.finball.data.database.subCategory.SubCategoryEntity
+import com.its.mobile.finball.data.setting.SettingEntity
+import com.its.mobile.finball.data.setting.SettingManager
+import com.its.mobile.finball.data.setting.SettingProperty
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -19,7 +23,8 @@ import java.util.*
 class SettingInteract(
     private val costsDBManager: CostsDBManager,
     private val revenueDBManager: RevenueDBManager,
-    private val subCategoryDBManager: SubCategoryDBManager
+    private val subCategoryDBManager: SubCategoryDBManager,
+    private val settingManager: SettingManager
 ) {
 
     companion object {
@@ -31,6 +36,19 @@ class SettingInteract(
     private var jsonCostsExportList: String = ""
     private var jsonRevenueExportList: String = ""
     private var jsonSubCategoryExportList: String = ""
+
+    fun getSettingsEntityList(): ArrayList<SettingEntity> = ArrayList<SettingEntity>()
+        .apply {
+            addAll(settingManager.getSettings())
+        }
+
+    fun getPropertyMap(): Observable<MutableMap<String, Any>> {
+        return settingManager.getProperties()
+    }
+
+    fun <T>setProperty(settingProperty: SettingProperty<T>) {
+        settingManager.setProperty(settingProperty)
+    }
 
     fun getCosts(): Single<List<CostsEntity>> = costsDBManager.getAll()
         .subscribeOn(Schedulers.io())

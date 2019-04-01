@@ -18,8 +18,18 @@ interface SettingView: BaseMvpView {
     fun checkPermissions(requestCode: Int)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun setImport(text: String)
+    fun chooseImportFile()
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun chooseImportFile()
+    fun notifySettingItemsChanged()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun notifySettingItemChanged(position: Int)
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun startRateIntent()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun shareApp()
+
 }

@@ -1,5 +1,6 @@
 package com.its.mobile.finball.di.module
 
+import android.content.Context
 import com.its.mobile.finball.data.database.costs.CostsDBManager
 import com.its.mobile.finball.data.database.revenue.RevenueDBManager
 import com.its.mobile.finball.di.scope.ViewScope
@@ -13,7 +14,7 @@ class MenuModule {
 
     @Provides
     @ViewScope
-    fun provideMenuInteract(costsDBManager: CostsDBManager, revenueDBManager: RevenueDBManager): MenuInteract = MenuInteract(costsDBManager, revenueDBManager)
+    fun provideMenuInteract(costsDBManager: CostsDBManager, revenueDBManager: RevenueDBManager, context: Context): MenuInteract = MenuInteract(costsDBManager, revenueDBManager, context)
 
     @Provides
     @ViewScope

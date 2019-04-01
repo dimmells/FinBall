@@ -22,7 +22,6 @@ import com.its.mobile.finball.presentation.view.MenuView
 import com.its.mobile.finball.ui.navigation.MainRouter
 import kotlinx.android.synthetic.main.fragment_menu.*
 
-
 class MenuFragment : BaseFragment(), MenuView {
 
     companion object {
@@ -84,9 +83,9 @@ class MenuFragment : BaseFragment(), MenuView {
     }
 
     private fun moveOnScreen() {
-        val metrix = DisplayMetrics()
-        activity?.windowManager?.defaultDisplay?.getMetrics(metrix)
-        val height = metrix.heightPixels
+        val metrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(metrics)
+        val height = metrics.heightPixels
 
         val offset = (height * 0.25).toInt()
 

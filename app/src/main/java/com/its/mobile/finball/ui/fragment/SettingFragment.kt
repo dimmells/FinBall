@@ -3,11 +3,13 @@ package com.its.mobile.finball.ui.fragment
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.app.ShareCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +21,7 @@ import com.its.mobile.finball.di.ApplicationLoader
 import com.its.mobile.finball.di.module.SettingModule
 import com.its.mobile.finball.presentation.presenter.SettingPresenter
 import com.its.mobile.finball.presentation.view.SettingView
+import com.its.mobile.finball.ui.adapter.SettingsRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_setting.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import java.io.File
@@ -39,6 +42,7 @@ class SettingFragment : BaseFragment(), SettingView {
     private val permissionsList =
         arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private var isPermissionsGranted = true
+    private lateinit var recyclerAdapter: SettingsRecyclerAdapter
 
     @InjectPresenter
     lateinit var settingPresenter: SettingPresenter
@@ -57,8 +61,10 @@ class SettingFragment : BaseFragment(), SettingView {
         layout_setting_toolbar.text_view_toolbar_title.text = "Setting"
         layout_setting_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
 
-        button_setting_export.setOnClickListener { settingPresenter.onExportClick() }
-        button_setting_import.setOnClickListener { settingPresenter.onImportClick() }
+        recyclerAdapter = SettingsRecyclerAdapter(settingPresenter, settingPresenter)
+        val recyclerLayoutManager = LinearLayoutManager(context)
+        recycler_view_setting_list.adapter = recyclerAdapter
+        recycler_view_setting_list.layoutManager = recyclerLayoutManager
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -118,5 +124,26 @@ class SettingFragment : BaseFragment(), SettingView {
         startActivityForResult(intent, PICKFILE_RERQUEST_CODE)
     }
 
-    override fun setImport(text: String) { text_view_setting_import_text.text = text }
+    override fun notifySettingItemsChanged() = recyclerAdapter.notifyDataSetChanged()
+
+    override fun notifySettingItemChanged(position: Int) = recyclerAdapter.notifyItemChanged(position)
+
+    override fun startRateIntent() {
+        val appPackageName = context?.packageName
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
+    }
+
+    override fun shareApp() {
+        try {
+            val appPackageName = context?.packageName
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Share")
+            val appLink = "https://play.google.com/store/apps/details?id=$appPackageName"
+            val messageContent = "Try this app"
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "\n$messageContent\n$appLink\n")
+            startActivity(Intent.createChooser(shareIntent, "Choose"))
+        } catch (e: Exception) {
+        }
+    }
 }

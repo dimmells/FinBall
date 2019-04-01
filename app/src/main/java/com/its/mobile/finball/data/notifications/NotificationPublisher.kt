@@ -7,6 +7,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.media.RingtoneManager
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
@@ -51,6 +52,14 @@ class NotificationPublisher : BroadcastReceiver() {
             id = 2
              notification = getNotification(context, title, content, channelId)
         }
+
+        val title = "Расходы, доходы ${Calendar.DAY_OF_WEEK_IN_MONTH} ${Calendar.DAY_OF_WEEK}"
+        val content = "Не забывайте сохранять свои доходы, расходы"
+        channelId = "every_day_channel"
+        channelName = "Every Day channel"
+        id = 2
+        notification = getNotification(context, title, content, channelId)
+
         notification?.let { notification -> sendNotification(context, notification, channelId, channelName, id) }
     }
 
@@ -75,6 +84,7 @@ class NotificationPublisher : BroadcastReceiver() {
             .setSmallIcon(R.drawable.ic_mtrl_chip_checked_circle)
             .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
             .setContentTitle(notificationTitle)
+            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
             .setContentText(notificationContent)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)

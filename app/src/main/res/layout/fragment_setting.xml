@@ -13,35 +13,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-            android:id="@+id/button_setting_export"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Export data"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/layout_setting_toolbar"/>
-
-    <Button
-            android:id="@+id/button_setting_import"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Import data"
-            app:layout_constraintTop_toBottomOf="@+id/layout_setting_toolbar"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/button_setting_export"/>
-
-    <TextView
-            android:id="@+id/text_view_setting_import_text"
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_setting_list"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@+id/button_setting_import"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"/>
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_setting_toolbar"/>
 </android.support.constraint.ConstraintLayout>
