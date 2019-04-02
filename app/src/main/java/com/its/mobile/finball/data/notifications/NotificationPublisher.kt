@@ -38,22 +38,22 @@ class NotificationPublisher : BroadcastReceiver() {
         val currentTime = Calendar.getInstance()
 
         if (SimpleDateFormat("dd", Locale.ROOT).format(currentTime.time).toInt() == Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH) &&
-            (currentTime.time.hours in 9..11 || currentTime.time.hours in 19..21)) {
+            (currentTime.time.hours == 10 || currentTime.time.hours == 21)) {
             val title = "Копилка"
             val content = "Сколько Вы собрали за месяц, заполните копилку"
             channelId = if (isNotificationsSoundEnabled) "money_box_channel_default" else "money_box_channel_low"
             channelName = if (isNotificationsSoundEnabled) "Money Box channel" else "Money Box channel Mute"
             id = 1
             notification = getNotification(context, title, content, channelId)
-        } else if (Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_WEEK_IN_MONTH) / 3 == 0 &&
-            (currentTime.time.hours in 9..11 || currentTime.time.hours in 20..21)) {
+        } else if (Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH) / 3 == 0 &&
+            (currentTime.time.hours == 9 || currentTime.time.hours == 21)) {
             val title = "Сохранение"
             val content = "Сделайте сохранение данных"
             channelId = if (isNotificationsSoundEnabled) "money_box_channel_default" else "money_box_channel_low"
             channelName = if (isNotificationsSoundEnabled) "Money Box channel" else "Money Box channel Mute"
             id = 2
             notification = getNotification(context, title, content, channelId)
-        } else if (currentTime.time.hours in 14..15 || currentTime.time.hours in 19..21) {
+        } else if (currentTime.time.hours == 14 || currentTime.time.hours == 19) {
             val title = "Расходы, доходы"
             val content = "Не забывайте сохранять свои доходы, расходы"
             channelId = if (isNotificationsSoundEnabled) "every_day_channel_default" else "every_day_channel_low"
