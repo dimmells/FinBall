@@ -77,17 +77,4 @@ class CostsRatingPresenter(private val costsRatingInteract: CostsRatingInteract)
         costsCategoryList.clear()
         costsCategoryList.addAll(newList)
     }
-
-    private fun insert(costsEntity: CostsEntity) {
-        costsRatingInteract.insertTest(costsEntity)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError { throwable ->
-                viewState.showToast("Error: ${throwable.localizedMessage}")
-            }
-            .doOnSuccess {
-            }
-            .subscribe()
-            .let { disposables.add(it) }
-    }
 }

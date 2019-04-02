@@ -9,7 +9,7 @@ import java.util.*
 @Entity(tableName = DatabaseConfiguration.Costs.TABLE_NAME)
 class CostsEntity (
 
-    @PrimaryKey()
+    @PrimaryKey
     @ColumnInfo(name = DatabaseConfiguration.Costs.Columns.DATE)
     val date: Date,
 

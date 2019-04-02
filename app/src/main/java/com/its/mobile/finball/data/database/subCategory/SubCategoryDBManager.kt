@@ -20,7 +20,7 @@ class SubCategoryDBManager(private val subCategoryDao: SubCategoryDao) {
         Single.fromCallable { subCategoryDao.insert(subCategoryEntity) }
             .subscribeOn(Schedulers.io())
 
-    fun delete(subCategoryEntity: SubCategoryEntity) =
+    fun delete(subCategoryEntity: SubCategoryEntity): Completable =
         Completable.fromAction { subCategoryDao.delete(subCategoryEntity) }
             .subscribeOn(Schedulers.io())
 

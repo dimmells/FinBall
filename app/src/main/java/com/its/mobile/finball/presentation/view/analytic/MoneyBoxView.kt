@@ -10,7 +10,7 @@ interface MoneyBoxView: BaseMvpView {
     fun setMoneyBoxInvestmentRulesVisible(isVisible: Boolean)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun statrtRuleViewsAnimation(isVisible: Boolean)
+    fun startRuleViewsAnimation(isVisible: Boolean)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun setMoneyBoxInputEnabled(isEnabled: Boolean)

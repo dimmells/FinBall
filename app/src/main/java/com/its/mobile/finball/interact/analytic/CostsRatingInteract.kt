@@ -13,6 +13,4 @@ class CostsRatingInteract(
 
     fun getCostsCategories() = costsCategoryManager.getCostsCategoryList()
 
-    fun insertTest(costsEntity: CostsEntity) = costsDBManager.insert(costsEntity)
-
 }

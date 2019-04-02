@@ -9,5 +9,5 @@ import dagger.Subcomponent
 @ViewScope
 interface YearDiagramComponent {
 
-    fun providePreesnter(): YearDiagramPresenter
+    fun providePresenter(): YearDiagramPresenter
 }

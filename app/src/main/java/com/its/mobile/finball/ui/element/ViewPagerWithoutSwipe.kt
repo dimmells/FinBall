@@ -8,7 +8,7 @@ import android.view.MotionEvent
 
 class ViewPagerWithoutSwipe(context: Context, attr: AttributeSet?) : ViewPager(context, attr) {
 
-    var pagingEnabled: Boolean = false
+    private var pagingEnabled: Boolean = false
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent?): Boolean =

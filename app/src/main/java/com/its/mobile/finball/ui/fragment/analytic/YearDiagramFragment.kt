@@ -40,7 +40,7 @@ class YearDiagramFragment : BaseFragment(), YearDiagramView {
     @ProvidePresenter
     fun providePresenter(): YearDiagramPresenter = ApplicationLoader.applicationComponent
         .yearDiagramComponent(YearDiagramModule())
-        .providePreesnter()
+        .providePresenter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_year_diagram, container, false)

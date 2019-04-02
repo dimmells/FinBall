@@ -49,7 +49,7 @@ class MoneyBoxPresenter(private val moneyBoxInteract: MoneyBoxInteract): BaseMvp
     fun onMoneyBoxSwitchClick() {
         isMoneyBoxInvestmentRulesOpen = !isMoneyBoxInvestmentRulesOpen
         viewState.setMoneyBoxInvestmentRulesVisible(isMoneyBoxInvestmentRulesOpen)
-        viewState.statrtRuleViewsAnimation(isMoneyBoxInvestmentRulesOpen)
+        viewState.startRuleViewsAnimation(isMoneyBoxInvestmentRulesOpen)
     }
 
     private fun getDaysCountToLastDayOfMonth(): Int {

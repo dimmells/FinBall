@@ -5,9 +5,11 @@ import com.its.mobile.finball.data.category.CostsCategoryManager
 import com.its.mobile.finball.data.database.costs.CostsDBManager
 import com.its.mobile.finball.data.database.costs.CostsEntity
 import io.reactivex.Single
-import java.util.*
 
-class InputCostsInteract(private val costsCategoryManager: CostsCategoryManager, private val costsDBManager: CostsDBManager) {
+class InputCostsInteract(
+    private val costsCategoryManager: CostsCategoryManager,
+    private val costsDBManager: CostsDBManager
+) {
 
     fun getCategoryInfo(categoryId: Int): CategoryEntity? = costsCategoryManager.getCostsCategory(categoryId)
 

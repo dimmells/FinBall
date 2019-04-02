@@ -27,6 +27,6 @@ class InputRevenueModule {
 
     @Provides
     @ViewScope
-    fun provideInputRevenuePrersenter(inputRevenueInteract: InputRevenueInteract): InputRevenuePresenter =
+    fun provideInputRevenuePresenter(inputRevenueInteract: InputRevenueInteract): InputRevenuePresenter =
         InputRevenuePresenter(inputRevenueInteract)
 }

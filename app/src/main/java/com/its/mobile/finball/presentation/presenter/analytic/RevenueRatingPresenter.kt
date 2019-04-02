@@ -86,17 +86,4 @@ class RevenueRatingPresenter(private val revenueRatingInteract: RevenueRatingInt
         revenueCategoryList.clear()
         revenueCategoryList.addAll(sortedList)
     }
-
-    private fun insert(revenueEntity: RevenueEntity) {
-        revenueRatingInteract.insertTest(revenueEntity)
-        .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnError { throwable ->
-                viewState.showToast("Error: ${throwable.localizedMessage}")
-            }
-            .doOnSuccess {
-            }
-            .subscribe()
-            .let { disposables.add(it) }
-    }
 }

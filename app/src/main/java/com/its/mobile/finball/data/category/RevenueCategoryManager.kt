@@ -3,7 +3,7 @@ package com.its.mobile.finball.data.category
 import com.its.mobile.finball.R
 import com.its.mobile.finball.ui.item.RevenueCategoryItem
 
-class RevenueCategoryManager() {
+class RevenueCategoryManager {
 
     private val categoryList: ArrayList<CategoryEntity> = ArrayList()
 

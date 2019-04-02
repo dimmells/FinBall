@@ -18,6 +18,6 @@ class InputCostsModule {
 
     @Provides
     @ViewScope
-    fun provideInputCostsPrersenter(inputCostsInteract: InputCostsInteract): InputCostsPresenter =
+    fun provideInputCostsPresenter(inputCostsInteract: InputCostsInteract): InputCostsPresenter =
         InputCostsPresenter(inputCostsInteract)
 }

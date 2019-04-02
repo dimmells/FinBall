@@ -17,6 +17,4 @@ class RevenueRatingInteract(
 
     fun loadRevenueSubCategory(parentCategoryId: Int) = subCategoryDBManager.getSubCategoryList(parentCategoryId)
 
-    fun insertTest(revenueEntity: RevenueEntity) = revenueDBManager.insert(revenueEntity)
-
 }

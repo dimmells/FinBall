@@ -5,7 +5,7 @@ import com.its.mobile.finball.presentation.presenter.BaseMvpPresenter
 import com.its.mobile.finball.presentation.view.intro.PrivatePolicyView
 
 @InjectViewState
-class PrivatePolicyPresenter() : BaseMvpPresenter<PrivatePolicyView>() {
+class PrivatePolicyPresenter: BaseMvpPresenter<PrivatePolicyView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

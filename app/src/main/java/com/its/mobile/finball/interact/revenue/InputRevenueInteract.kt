@@ -7,7 +7,6 @@ import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import com.its.mobile.finball.data.database.subCategory.SubCategoryDBManager
 import com.its.mobile.finball.data.database.subCategory.SubCategoryEntity
 import io.reactivex.Single
-import java.util.*
 
 class InputRevenueInteract(
     private val revenueCategoryManager: RevenueCategoryManager,
@@ -17,7 +16,8 @@ class InputRevenueInteract(
 
     fun getCategoryInfo(categoryId: Int): CategoryEntity? = revenueCategoryManager.getRevenueCategory(categoryId)
 
-    fun getSubCategoryInfo(subCategoryId: Int): Single<SubCategoryEntity> = subCategoryDBManager.getSubCategory(subCategoryId)
+    fun getSubCategoryInfo(subCategoryId: Int): Single<SubCategoryEntity> =
+        subCategoryDBManager.getSubCategory(subCategoryId)
 
     fun saveRevenue(revenueEntity: RevenueEntity): Single<Long> = revenueDBManager.insert(revenueEntity)
 

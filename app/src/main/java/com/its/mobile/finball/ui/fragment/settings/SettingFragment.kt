@@ -34,7 +34,7 @@ class SettingFragment : BaseFragment(), SettingView {
     companion object {
         const val STORAGE_EXPORT_PERMISSIONS_CODE = 1
         const val STORAGE_IMPORT_PERMISSIONS_CODE = 2
-        const val PICKFILE_RERQUEST_CODE = 3
+        const val PICK_FILE_REQUEST_CODE = 3
 
         const val SHARED_PROVIDER_AUTHORITY = BuildConfig.APPLICATION_ID + ".myfileprovider"
 
@@ -72,7 +72,7 @@ class SettingFragment : BaseFragment(), SettingView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICKFILE_RERQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val fileUri = data?.data
             val contentResolver = context?.contentResolver
             settingPresenter.readFromImportFile(contentResolver, fileUri)
@@ -143,7 +143,7 @@ class SettingFragment : BaseFragment(), SettingView {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "*/*"
         startActivityForResult(intent,
-            PICKFILE_RERQUEST_CODE
+            PICK_FILE_REQUEST_CODE
         )
     }
 

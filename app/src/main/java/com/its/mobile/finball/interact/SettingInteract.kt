@@ -16,9 +16,10 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.json.JSONArray
-import org.json.JSONObject
-import java.io.*
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileWriter
+import java.io.InputStreamReader
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -48,7 +49,7 @@ class SettingInteract(
         return settingManager.getProperties()
     }
 
-    fun <T>setProperty(settingProperty: SettingProperty<T>) {
+    fun <T> setProperty(settingProperty: SettingProperty<T>) {
         settingManager.setProperty(settingProperty)
     }
 
@@ -124,8 +125,9 @@ class SettingInteract(
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
-    fun insertSubCategory(subCategoryEntity: SubCategoryEntity) = subCategoryDBManager.insert(subCategoryEntity)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+    fun insertSubCategory(subCategoryEntity: SubCategoryEntity): Single<Long> =
+        subCategoryDBManager.insert(subCategoryEntity)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
 }

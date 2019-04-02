@@ -1,7 +1,6 @@
 package com.its.mobile.finball.interact
 
 import android.content.Context
-import android.content.res.Resources
 import com.its.mobile.finball.R
 import com.its.mobile.finball.data.database.costs.CostsDBManager
 import com.its.mobile.finball.data.database.costs.CostsEntity
@@ -10,7 +9,11 @@ import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import io.reactivex.Single
 import java.util.*
 
-class MenuInteract(private val costsDBManager: CostsDBManager, private val revenueDBManager: RevenueDBManager, private val context: Context) {
+class MenuInteract(
+    private val costsDBManager: CostsDBManager,
+    private val revenueDBManager: RevenueDBManager,
+    private val context: Context
+) {
 
     fun getMonthCosts(): Single<List<CostsEntity>> {
         val calendar = Calendar.getInstance()

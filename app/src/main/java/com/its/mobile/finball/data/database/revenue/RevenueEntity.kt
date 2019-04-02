@@ -9,7 +9,7 @@ import java.util.*
 @Entity(tableName = DatabaseConfiguration.Revenue.TABLE_NAME)
 class RevenueEntity (
 
-    @PrimaryKey()
+    @PrimaryKey
     @ColumnInfo(name = DatabaseConfiguration.Revenue.Columns.DATE)
     val date: Date,
 

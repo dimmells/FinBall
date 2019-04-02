@@ -4,7 +4,7 @@ import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.ViewCommand
 import com.arellomobile.mvp.viewstate.strategy.StateStrategy
 
-class AddToEndSingleTagStrategy : StateStrategy {
+class AddToEndSingleTagStrategy: StateStrategy {
 
     override fun <View : MvpView?> beforeApply(currentState: MutableList<ViewCommand<View>>?, incomingCommand: ViewCommand<View>?) {
 

@@ -65,7 +65,7 @@ class MoneyBoxFragment : BaseFragment(), MoneyBoxView {
         text_view_money_box_investment_rules.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
-    override fun statrtRuleViewsAnimation(isVisible: Boolean) {
+    override fun startRuleViewsAnimation(isVisible: Boolean) {
         button_money_box_rules_switch.animate()
             .rotation(if (isVisible) 180f else 0f)
             .duration = 200

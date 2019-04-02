@@ -52,7 +52,7 @@ class WriteUsFragment: BaseFragment(), WriteUsView {
     override fun sendEmail() {
         val mailto = "mailto:bob@example.org" +
                 "?cc=" + "" +
-                "&subject=" + Uri.encode("Instagram referral issue") +
+                "&subject=" + Uri.encode("FinBall issue") +
                 "&body=" + Uri.encode(edit_text_write_us_message.text.toString())
 
         val emailIntent = Intent(Intent.ACTION_SENDTO)

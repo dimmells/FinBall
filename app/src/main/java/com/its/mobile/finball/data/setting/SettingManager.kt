@@ -5,7 +5,7 @@ import com.its.mobile.finball.R
 import com.its.mobile.finball.ui.item.SettingItem
 import io.reactivex.Observable
 
-class SettingManager(private val settingRxProperties: SettingRxProperties, private val context: Context) {
+class SettingManager(private val settingRxProperties: SettingRxProperties, context: Context) {
 
     fun getProperties(): Observable<MutableMap<String, Any>> {
         return settingRxProperties.settingPropertiesObservable

@@ -1,6 +1,5 @@
 package com.its.mobile.finball.data.database.costs
 
-import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -13,7 +12,8 @@ class CostsDBManager(private val costsDao: CostsDao) {
     private val costsListBehaviourSubject: BehaviorSubject<Single<List<CostsEntity>>> =
         BehaviorSubject.createDefault(costsDao.getAll())
 
-    val costsListObservable: Observable<Single<List<CostsEntity>>> = costsListBehaviourSubject.map { it.subscribeOn(Schedulers.io()) }
+    val costsListObservable: Observable<Single<List<CostsEntity>>> =
+        costsListBehaviourSubject.map { it.subscribeOn(Schedulers.io()) }
 
     fun getAll(): Single<List<CostsEntity>> = costsDao.getAll()
         .subscribeOn(Schedulers.io())
@@ -55,7 +55,7 @@ class CostsDBManager(private val costsDao: CostsDao) {
     }
 
     fun getBetweenDates(from: Date, to: Date): Single<List<CostsEntity>> = costsDao.getBetweenDates(from, to)
-            .subscribeOn(Schedulers.io())
+        .subscribeOn(Schedulers.io())
 
     fun getByCategory(categoryId: Int): Single<List<CostsEntity>> = costsDao.getByCategory(categoryId)
         .subscribeOn(Schedulers.io())
