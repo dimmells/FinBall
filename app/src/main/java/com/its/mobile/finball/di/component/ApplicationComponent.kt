@@ -1,6 +1,10 @@
 package com.its.mobile.finball.di.component
 
+import com.its.mobile.finball.di.component.intro.IntroSlideComponent
+import com.its.mobile.finball.di.component.intro.PrivatePolicyComponent
 import com.its.mobile.finball.di.module.*
+import com.its.mobile.finball.di.module.intro.IntroSlideModule
+import com.its.mobile.finball.di.module.intro.PrivatePolicyModule
 import com.its.mobile.finball.di.scope.ApplicationScope
 import dagger.Component
 
@@ -50,6 +54,10 @@ interface ApplicationComponent {
     fun settingComponent(settingModule: SettingModule): SettingComponent
 
     fun writeUsComponent(writeUsModule: WriteUsModule): WriteUsComponent
+
+    fun privatePolicyComponent(privatePolicyModule: PrivatePolicyModule): PrivatePolicyComponent
+
+    fun introSlideComponent(introSlideModule: IntroSlideModule): IntroSlideComponent
 
 }
 

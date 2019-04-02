@@ -9,7 +9,15 @@ class MainPresenter(private val mainInteract: MainInteract) : BaseMvpPresenter<M
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        if (mainInteract.isNewUser()) {
+            viewState.navigateToIntro()
+        } else {
+            viewState.navigateToMenu()
+        }
+    }
+
+    fun onPrivatePolicyConfirmed() {
+        mainInteract.updateUserStatus()
         viewState.navigateToMenu()
     }
 }
-

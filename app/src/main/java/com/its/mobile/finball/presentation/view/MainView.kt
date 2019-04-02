@@ -10,4 +10,7 @@ interface MainView : BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun navigateToMenu()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToIntro()
 }

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.its.mobile.finball.ui.fragment.MonthDiagramFragment
 import com.its.mobile.finball.ui.fragment.YearDiagramFragment
 
-class DiagramSliderViewPagerAdapter(fragmentManager: FragmentManager?): FragmentPagerAdapter(fragmentManager) {
+class DiagramSliderViewPagerAdapter(fragmentManager: FragmentManager?) : FragmentPagerAdapter(fragmentManager) {
 
     private val diagramFragmentList: ArrayList<Fragment> = arrayListOf(
         MonthDiagramFragment.newInstance(),

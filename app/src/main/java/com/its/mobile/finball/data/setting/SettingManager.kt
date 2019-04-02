@@ -20,7 +20,7 @@ class SettingManager(private val settingRxProperties: SettingRxProperties, priva
         SettingEntity(SettingItem.NOTIFICATIONS_SOUND, context.getString(R.string.setting_notifications_sound), R.drawable.icon_settings_notifications_sound_enabled, R.drawable.icon_settings_notifications_sound_disabled),
         SettingEntity(SettingItem.IMPORT_DATA, context.getString(R.string.setting_import_data), R.drawable.icon_settings_import),
         SettingEntity(SettingItem.EXPORT_DATA, context.getString(R.string.setting_export_data), R.drawable.icon_settings_export),
-        SettingEntity(SettingItem.SUBSCRIPRION, context.getString(R.string.settings_subscription), R.drawable.icon_settings_subscription),
+        SettingEntity(SettingItem.SUBSCRIPTION, context.getString(R.string.settings_subscription), R.drawable.icon_settings_subscription),
         SettingEntity(SettingItem.LOCK, context.getString(R.string.settings_lock), R.drawable.icon_settings_lock),
         SettingEntity(SettingItem.WRITE_US, context.getString(R.string.setting_write_us), R.drawable.icon_settings_write_us),
         SettingEntity(SettingItem.RATE_APP, context.getString(R.string.setting_rate_app), R.drawable.icon_settings_rate),

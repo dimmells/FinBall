@@ -7,11 +7,16 @@ import com.its.mobile.finball.R
 import com.its.mobile.finball.presentation.adapter.CategoryAdapterContract
 import com.its.mobile.finball.ui.viewholder.CategoryItemViewHolder
 
-class CategoryRecyclerAdapter(private val adapterPresenter: CategoryAdapterContract.AdapterPresenter,
-                              private val itemPresenter: CategoryAdapterContract.CategoryItemPresenter): RecyclerView.Adapter<CategoryItemViewHolder>() {
+class CategoryRecyclerAdapter(
+    private val adapterPresenter: CategoryAdapterContract.AdapterPresenter,
+    private val itemPresenter: CategoryAdapterContract.CategoryItemPresenter
+) : RecyclerView.Adapter<CategoryItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, itemType: Int): CategoryItemViewHolder =
-        CategoryItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false), itemPresenter)
+        CategoryItemViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false),
+            itemPresenter
+        )
 
     override fun getItemCount(): Int = adapterPresenter.getItemsCount()
 

@@ -17,9 +17,11 @@ import com.its.mobile.finball.di.module.MainActivityModule
 import com.its.mobile.finball.presentation.presenter.MainPresenter
 import com.its.mobile.finball.presentation.view.MainView
 import com.its.mobile.finball.ui.fragment.*
+import com.its.mobile.finball.ui.fragment.intro.IntroPagerFragment
 import com.its.mobile.finball.ui.navigation.MainRouter
+import com.its.mobile.finball.ui.navigation.PrivacyPolicyRouter
 
-class MainActivity : BaseActivity(), MainView, MainRouter {
+class MainActivity : BaseActivity(), MainView, MainRouter, PrivacyPolicyRouter {
 
     @InjectPresenter
     lateinit var mainPresenter: MainPresenter
@@ -57,6 +59,8 @@ class MainActivity : BaseActivity(), MainView, MainRouter {
 
     override fun navigateToWriteUs() = setFragment(WriteUsFragment.newInstance(), true, true)
 
+    override fun navigateToIntro() = setFragment(IntroPagerFragment.newInstance(), false)
+
     private fun setFragment(fragment: Fragment, addToBackStack: Boolean, menuAnimation: Boolean = false) {
         supportFragmentManager.beginTransaction()
             .apply {
@@ -85,4 +89,6 @@ class MainActivity : BaseActivity(), MainView, MainRouter {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60 * 1000, pendingIntent)
     }
+
+    override fun onPrivacyPolicyConfirmed() = mainPresenter.onPrivatePolicyConfirmed()
 }

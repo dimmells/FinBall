@@ -1,6 +1,5 @@
 package com.its.mobile.finball.presentation.presenter
 
-import android.content.Context
 import com.arellomobile.mvp.InjectViewState
 import com.github.mikephil.charting.data.PieEntry
 import com.its.mobile.finball.interact.MenuInteract
@@ -41,14 +40,14 @@ class MenuPresenter(private val menuInteract: MenuInteract): BaseMvpPresenter<Me
                 { revenueList ->
                     revenue = 0f
                     revenueList.forEach { revenue += it.amount }
-                    getTotalCostsFroMonth()
+                    getTotalCostsForMonth()
                 },
                 { viewState.showToast(it.localizedMessage) }
             )
             .let { disposables.add(it) }
     }
 
-    private fun getTotalCostsFroMonth() {
+    private fun getTotalCostsForMonth() {
         menuInteract.getMonthCosts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
