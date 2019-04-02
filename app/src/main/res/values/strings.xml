@@ -94,4 +94,14 @@
     <string name="setting_rate_app">Оцени приложение</string>
     <string name="setting_share_app">Поделись приложением</string>
     <string name="setting_about_app">О приложении</string>
+    <string name="month_fragment_revenue_no_data">График доходов будет доступным через 7 дней</string>
+    <string name="month_fragment_costs_no_data">График расходов будет доступным через 7 дней</string>
+    <string name="settings_deposit_program">Депозитные программи</string>
+    <string name="settings_events">Мероприятия</string>
+    <string name="settings_subscription">Продлить подписку</string>
+    <string name="settings_lock">Настройка блокировки</string>
+    <string name="personal_evolution">Развитие личности</string>
+    <string name="analytic">Аналитика</string>
+    <string name="settings">Настройки</string>
+    <string name="year_diagram_no_data">Годовой график будет доступным через 3 месяца</string>
 </resources>

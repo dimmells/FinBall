@@ -59,7 +59,7 @@ class SettingFragment : BaseFragment(), SettingView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        layout_setting_toolbar.text_view_toolbar_title.text = "Setting"
+        layout_setting_toolbar.text_view_toolbar_title.text = getString(R.string.settings)
         layout_setting_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
 
         recyclerAdapter = SettingsRecyclerAdapter(settingPresenter, settingPresenter)

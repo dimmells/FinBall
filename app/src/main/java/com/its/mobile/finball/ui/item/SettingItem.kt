@@ -9,4 +9,6 @@ object SettingItem {
     const val RATE_APP = "rate_app"
     const val SHARE_APP = "share_app"
     const val ABOUT_APP = "about_app"
+    const val SUBSCRIPRION = "subscription"
+    const val LOCK = "lock"
 }

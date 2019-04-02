@@ -38,4 +38,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"/>
 
+    <TextView
+            android:id="@+id/text_view_month_diagram_revenue_no_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/month_fragment_revenue_no_data"
+            android:textSize="28sp"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/line_chart_month_diagram_revenue"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/line_chart_month_diagram_revenue"/>
+
+    <TextView
+            android:id="@+id/text_view_month_diagram_costs_no_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/month_fragment_costs_no_data"
+            android:textSize="28sp"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/line_chart_month_diagram_costs"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 </android.support.constraint.ConstraintLayout>

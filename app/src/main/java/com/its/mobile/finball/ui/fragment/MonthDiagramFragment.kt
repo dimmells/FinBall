@@ -110,7 +110,11 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
         revenueDataSet.clear()
         revenueLabels.clear()
 
-        if (records.isEmpty()) return
+        if (records.isEmpty()){// || records.size < 7) {
+            text_view_month_diagram_revenue_no_data.visibility = View.VISIBLE
+            line_chart_month_diagram_revenue.visibility = View.INVISIBLE
+            return
+        }
 
         records.forEachIndexed { i, entity ->
             revenueDataSet.addEntry(Entry(i.toFloat(), entity.amount, entity.date))
@@ -136,7 +140,11 @@ class MonthDiagramFragment : BaseFragment(), MonthDiagramView {
         costsDataSet.clear()
         costsLabels.clear()
 
-        if (records.isEmpty()) return
+        if (records.isEmpty()){// || records.size < 7) {
+            text_view_month_diagram_costs_no_data.visibility = View.VISIBLE
+            line_chart_month_diagram_costs.visibility = View.INVISIBLE
+            return
+        }
 
         records.forEachIndexed { i, entity ->
             costsDataSet.addEntry(Entry(i.toFloat(), entity.amount, entity.date))

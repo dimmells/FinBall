@@ -9,7 +9,7 @@
             android:id="@+id/button_menu_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Setting"
+            android:text="@string/settings"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,10 +35,10 @@
     </RelativeLayout>
 
     <Button
-            android:text="Analytic"
+            android:id="@+id/button_menu_analytic"
+            android:text="@string/analytic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_menu_analytic"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
@@ -46,10 +46,10 @@
             />
 
     <Button
-            android:text="Revenue"
+            android:id="@+id/button_menu_revenue"
+            android:text="@string/revenue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_menu_revenue"
             app:layout_constraintStart_toEndOf="@+id/button_menu_analytic"
             android:layout_marginStart="8dp"
             app:layout_constraintEnd_toStartOf="@+id/button_menu_costs"
@@ -59,10 +59,10 @@
             />
 
     <Button
-            android:text="Costs"
+            android:id="@+id/button_menu_costs"
+            android:text="@string/costs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_menu_costs"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="32dp"
             app:layout_constraintTop_toBottomOf="@+id/button_menu_analytic"
@@ -84,7 +84,6 @@
 
     <TextView
             android:id="@+id/text_view_menu_quote_author"
-            android:text="Author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -99,4 +98,24 @@
             android:layout_height="wrap_content"
             android:id="@+id/guideline"
             app:layout_constraintGuide_percent="0.3"/>
+
+    <Button
+            android:id="@+id/button_menu_deposit_program"
+            android:text="@string/settings_deposit_program"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/button_menu_revenue"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"/>
+
+    <Button
+            android:id="@+id/button_menu_personal_evolution"
+            android:text="@string/personal_evolution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/button_menu_deposit_program"/>
 </android.support.constraint.ConstraintLayout>

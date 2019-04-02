@@ -44,7 +44,7 @@ class RevenueCategoryFragment: BaseFragment(), RevenueCategoryView {
         categoryRecyclerAdapter = CategoryRecyclerAdapter(revenueCategoryPresenter, revenueCategoryPresenter)
         setupCategoryRecyclerList()
 
-        layout_input_revenue_toolbar.text_view_toolbar_title.text = "Revenue Category"
+        layout_input_revenue_toolbar.text_view_toolbar_title.text = getString(R.string.revenue)
         layout_input_revenue_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
     }
 

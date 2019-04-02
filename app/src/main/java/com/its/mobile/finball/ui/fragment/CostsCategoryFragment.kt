@@ -44,7 +44,7 @@ class CostsCategoryFragment: BaseFragment(), CostsCategoryView {
         categoryRecyclerAdapter = CategoryRecyclerAdapter(revenueCategoryPresenter, revenueCategoryPresenter)
         setupCategoryRecyclerList()
 
-        layout_input_revenue_toolbar.text_view_toolbar_title.text = "Costs Category"
+        layout_input_revenue_toolbar.text_view_toolbar_title.text = getString(R.string.costs)
         layout_input_revenue_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
     }
 

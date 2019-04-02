@@ -40,7 +40,7 @@ class AnalyticPagerFragment: BaseFragment(), AnalyticPagerView {
         view_pager_analytic_pager_container.adapter = analyticViewPagerAdapter
         view_pager_analytic_pager_container.offscreenPageLimit = analyticViewPagerAdapter.count
 
-        text_view_toolbar_title.text = "Analytic"
+        text_view_toolbar_title.text = getString(R.string.analytic)
         button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
         bottom_navigation_view_analytic_pager_navigation.setOnNavigationItemSelectedListener { item ->
             analyticPagerPresenter.onNavigationItemSelected(item)
