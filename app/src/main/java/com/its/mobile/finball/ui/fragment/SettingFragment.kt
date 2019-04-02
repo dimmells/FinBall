@@ -1,6 +1,7 @@
 package com.its.mobile.finball.ui.fragment
 
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -26,6 +27,12 @@ import com.its.mobile.finball.ui.navigation.MainRouter
 import kotlinx.android.synthetic.main.fragment_setting.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import java.io.File
+import android.content.ContentUris
+import android.content.Context
+import android.database.Cursor
+import android.provider.MediaStore
+import android.provider.DocumentsContract
+import android.support.v4.provider.DocumentFile.isDocumentUri
 
 
 class SettingFragment : BaseFragment(), SettingView {
@@ -72,8 +79,8 @@ class SettingFragment : BaseFragment(), SettingView {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICKFILE_RERQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val fileUri = data?.data
-            val file = File(fileUri?.path)
-            settingPresenter.readFromImportFile(file)
+            val contentResolver = context?.contentResolver
+            settingPresenter.readFromImportFile(contentResolver, fileUri)
         }
     }
 

@@ -1,5 +1,7 @@
 package com.its.mobile.finball.presentation.presenter
 
+import android.content.ContentResolver
+import android.net.Uri
 import com.arellomobile.mvp.InjectViewState
 import com.its.mobile.finball.data.database.costs.CostsEntity
 import com.its.mobile.finball.data.database.revenue.RevenueEntity
@@ -136,8 +138,10 @@ class SettingPresenter(private val settingInteract: SettingInteract): BaseMvpPre
             .let { disposables.add(it) }
     }
 
-    fun readFromImportFile(importFile: File) {
-        settingInteract.readImportFile(importFile)
+    fun readFromImportFile(contResolver: ContentResolver?, fileUri: Uri?) {
+        val contentResolver = contResolver ?: return
+        val uri = fileUri ?: return
+        settingInteract.readImportFile(contentResolver, uri)
             .subscribe(
                 { jsonString ->
                     parseFromJson(jsonString)

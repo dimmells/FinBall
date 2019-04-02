@@ -1,5 +1,7 @@
 package com.its.mobile.finball.interact
 
+import android.content.ContentResolver
+import android.net.Uri
 import com.google.gson.GsonBuilder
 import com.its.mobile.finball.data.database.costs.CostsDBManager
 import com.its.mobile.finball.data.database.costs.CostsEntity
@@ -99,9 +101,9 @@ class SettingInteract(
             pathFile
         }
 
-    fun readImportFile(importFile: File): Single<String> =
+    fun readImportFile(contentResolver: ContentResolver, uri: Uri): Single<String> =
         Single.fromCallable {
-            val fis = FileInputStream(importFile)
+            val fis = contentResolver.openInputStream(uri)
             val bfr = BufferedReader(InputStreamReader(fis))
             var result = ""
             var line = bfr.readLine()
