@@ -3,9 +3,9 @@ package com.its.mobile.finball.ui.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.its.mobile.finball.ui.fragment.CategoryRatingSliderFragment
-import com.its.mobile.finball.ui.fragment.DiagramSliderFragment
-import com.its.mobile.finball.ui.fragment.MoneyBoxFragment
+import com.its.mobile.finball.ui.fragment.analytic.CategoryRatingSliderFragment
+import com.its.mobile.finball.ui.fragment.analytic.DiagramSliderFragment
+import com.its.mobile.finball.ui.fragment.analytic.MoneyBoxFragment
 
 class AnalyticViewPagerAdapter(manager: FragmentManager?) : FragmentPagerAdapter(manager) {
 

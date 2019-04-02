@@ -1,10 +1,30 @@
 package com.its.mobile.finball.di.component
 
+import com.its.mobile.finball.di.component.analytic.*
+import com.its.mobile.finball.di.component.costs.CostsCategoryComponent
+import com.its.mobile.finball.di.component.costs.InputCostsComponent
 import com.its.mobile.finball.di.component.intro.IntroSlideComponent
 import com.its.mobile.finball.di.component.intro.PrivatePolicyComponent
+import com.its.mobile.finball.di.component.revenue.InputRevenueComponent
+import com.its.mobile.finball.di.component.revenue.RevenueCategoryComponent
+import com.its.mobile.finball.di.component.revenue.RevenueSubCategoryComponent
+import com.its.mobile.finball.di.component.settings.SettingComponent
+import com.its.mobile.finball.di.component.settings.WriteUsComponent
 import com.its.mobile.finball.di.module.*
+import com.its.mobile.finball.di.module.analytic.*
+import com.its.mobile.finball.di.module.costs.CostsCategoryManagerModule
+import com.its.mobile.finball.di.module.costs.CostsCategoryModule
+import com.its.mobile.finball.di.module.costs.InputCostsModule
 import com.its.mobile.finball.di.module.intro.IntroSlideModule
 import com.its.mobile.finball.di.module.intro.PrivatePolicyModule
+import com.its.mobile.finball.di.module.revenue.InputRevenueModule
+import com.its.mobile.finball.di.module.revenue.RevenueCategoryManagerModule
+import com.its.mobile.finball.di.module.revenue.RevenueCategoryModule
+import com.its.mobile.finball.di.module.revenue.RevenueSubCategoryModule
+import com.its.mobile.finball.di.module.settings.SettingManagerModule
+import com.its.mobile.finball.di.module.settings.SettingModule
+import com.its.mobile.finball.di.module.settings.SettingPropertiesModule
+import com.its.mobile.finball.di.module.settings.WriteUsModule
 import com.its.mobile.finball.di.scope.ApplicationScope
 import dagger.Component
 

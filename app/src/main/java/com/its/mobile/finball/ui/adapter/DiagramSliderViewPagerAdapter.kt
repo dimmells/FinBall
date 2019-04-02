@@ -3,8 +3,8 @@ package com.its.mobile.finball.ui.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.its.mobile.finball.ui.fragment.MonthDiagramFragment
-import com.its.mobile.finball.ui.fragment.YearDiagramFragment
+import com.its.mobile.finball.ui.fragment.analytic.MonthDiagramFragment
+import com.its.mobile.finball.ui.fragment.analytic.YearDiagramFragment
 
 class DiagramSliderViewPagerAdapter(fragmentManager: FragmentManager?) : FragmentPagerAdapter(fragmentManager) {
 

@@ -10,7 +10,7 @@ import com.its.mobile.finball.R
 import com.its.mobile.finball.di.ApplicationLoader
 import com.its.mobile.finball.di.module.intro.PrivatePolicyModule
 import com.its.mobile.finball.presentation.presenter.intro.PrivatePolicyPresenter
-import com.its.mobile.finball.presentation.view.PrivatePolicyView
+import com.its.mobile.finball.presentation.view.intro.PrivatePolicyView
 import com.its.mobile.finball.ui.fragment.BaseFragment
 import com.its.mobile.finball.ui.navigation.PrivacyPolicyRouter
 import kotlinx.android.synthetic.main.fragment_intro_private_policy.*

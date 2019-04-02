@@ -10,7 +10,7 @@ import com.its.mobile.finball.R
 import com.its.mobile.finball.di.ApplicationLoader
 import com.its.mobile.finball.di.module.intro.IntroSlideModule
 import com.its.mobile.finball.presentation.presenter.intro.IntroSlidePresenter
-import com.its.mobile.finball.presentation.view.IntroSlideView
+import com.its.mobile.finball.presentation.view.intro.IntroSlideView
 import com.its.mobile.finball.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_intro_item.*
 

@@ -17,7 +17,16 @@ import com.its.mobile.finball.di.module.MainActivityModule
 import com.its.mobile.finball.presentation.presenter.MainPresenter
 import com.its.mobile.finball.presentation.view.MainView
 import com.its.mobile.finball.ui.fragment.*
+import com.its.mobile.finball.ui.fragment.analytic.AnalyticPagerFragment
+import com.its.mobile.finball.ui.fragment.costs.CostsCategoryFragment
+import com.its.mobile.finball.ui.fragment.costs.InputCostsFragment
 import com.its.mobile.finball.ui.fragment.intro.IntroPagerFragment
+import com.its.mobile.finball.ui.fragment.revenue.InputRevenueFragment
+import com.its.mobile.finball.ui.fragment.revenue.RevenueCategoryFragment
+import com.its.mobile.finball.ui.fragment.revenue.RevenueSubCategoryFragment
+import com.its.mobile.finball.ui.fragment.settings.AboutAppFragment
+import com.its.mobile.finball.ui.fragment.settings.SettingFragment
+import com.its.mobile.finball.ui.fragment.settings.WriteUsFragment
 import com.its.mobile.finball.ui.navigation.MainRouter
 import com.its.mobile.finball.ui.navigation.PrivacyPolicyRouter
 

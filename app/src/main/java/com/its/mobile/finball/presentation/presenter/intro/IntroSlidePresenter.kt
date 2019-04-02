@@ -3,7 +3,7 @@ package com.its.mobile.finball.presentation.presenter.intro
 import com.arellomobile.mvp.InjectViewState
 import com.its.mobile.finball.R
 import com.its.mobile.finball.presentation.presenter.BaseMvpPresenter
-import com.its.mobile.finball.presentation.view.IntroSlideView
+import com.its.mobile.finball.presentation.view.intro.IntroSlideView
 import com.its.mobile.finball.ui.item.IntroSliderItem
 
 @InjectViewState
