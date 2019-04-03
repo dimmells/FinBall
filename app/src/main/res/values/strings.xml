@@ -175,5 +175,6 @@
     <string name="write_us_title">Напишите нам если у вас есть предложения, комментарии к нашему приложению и мы Вам обязательно ответим</string>
     <string name="write_us_message_hint">Напишите сообщение</string>
     <string name="write_us_send">Отправить</string>
+    <string name="intro_skip">Пропустить</string>
 
 </resources>

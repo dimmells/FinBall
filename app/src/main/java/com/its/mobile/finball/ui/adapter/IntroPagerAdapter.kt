@@ -28,4 +28,6 @@ class IntroPagerAdapter(fragmentManager: FragmentManager?) : FragmentPagerAdapte
     override fun getItem(position: Int): Fragment = introFragmentList[position]
 
     override fun getCount(): Int = introFragmentList.size
+
+    fun getLastPosition(): Int = introFragmentList.lastIndex
 }

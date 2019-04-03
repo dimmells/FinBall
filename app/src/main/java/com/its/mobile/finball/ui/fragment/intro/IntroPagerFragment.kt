@@ -35,6 +35,8 @@ class IntroPagerFragment : BaseFragment(), PrivacyPolicyRouter {
 
         image_button_intro_next.setOnClickListener { onNextClick(introPagerAdapter.count) }
         image_button_intro_prev.setOnClickListener { onPrevClick(introPagerAdapter.count) }
+
+        text_view_intro_skip.setOnClickListener { onSkipClicked(introPagerAdapter.getLastPosition()) }
     }
 
     private fun onNextClick(pageCount: Int) {
@@ -45,6 +47,12 @@ class IntroPagerFragment : BaseFragment(), PrivacyPolicyRouter {
     private fun onPrevClick(pageCount: Int) {
         view_pager_intro.currentItem -= 1
         setArrowColor(pageCount)
+    }
+
+    private fun onSkipClicked(privatePolicyPosition: Int) {
+        text_view_intro_skip.visibility = View.INVISIBLE
+        view_pager_intro.currentItem = privatePolicyPosition
+        setArrowColor(privatePolicyPosition + 1)
     }
 
     private fun setActiveNavigationPoint(pageCount: Int) {
@@ -63,14 +71,15 @@ class IntroPagerFragment : BaseFragment(), PrivacyPolicyRouter {
     private fun setArrowColor(pageCount: Int) {
         when (view_pager_intro.currentItem) {
 
-            pageCount - 1 -> context?.getColorCompat(R.color.colorGrey1)?.let {
-                image_button_intro_next.setColorFilter(
-                    it
-                )
+            pageCount - 1 -> {
+                text_view_intro_skip.visibility = View.INVISIBLE
+                context?.getColorCompat(R.color.colorGrey1)?.let { image_button_intro_next.setColorFilter(it) }
+                context?.getColorCompat(R.color.colorAccent)?.let { image_button_intro_prev.setColorFilter(it) }
             }
             0 -> context?.getColorCompat(R.color.colorGrey1)?.let { image_button_intro_prev.setColorFilter(it) }
 
             else -> {
+                text_view_intro_skip.visibility = View.VISIBLE
                 context?.getColorCompat(R.color.colorAccent)?.let { image_button_intro_prev.setColorFilter(it) }
                 context?.getColorCompat(R.color.colorAccent)?.let { image_button_intro_next.setColorFilter(it) }
             }
