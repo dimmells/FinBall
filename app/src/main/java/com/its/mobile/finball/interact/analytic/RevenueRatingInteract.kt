@@ -2,7 +2,6 @@ package com.its.mobile.finball.interact.analytic
 
 import com.its.mobile.finball.data.category.RevenueCategoryManager
 import com.its.mobile.finball.data.database.revenue.RevenueDBManager
-import com.its.mobile.finball.data.database.revenue.RevenueEntity
 import com.its.mobile.finball.data.database.subCategory.SubCategoryDBManager
 
 class RevenueRatingInteract(

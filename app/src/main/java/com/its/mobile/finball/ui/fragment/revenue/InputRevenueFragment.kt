@@ -59,7 +59,7 @@ class InputRevenueFragment: BaseFragment(), InputRevenueView {
 
         inputRevenuePresenter.onStart(categoryId)
 
-        text_view_toolbar_title.text = "Revenue"
+        text_view_toolbar_title.text = getString(R.string.revenue)
         button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
 
         edit_text_input_revenue_amount.addTextChangedListener(object: TextWatcher {

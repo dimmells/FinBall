@@ -67,7 +67,7 @@ class RevenueSubCategoryFragment : BaseFragment(),
         subCategoryRecyclerAdapter = CategoryRecyclerAdapter(revenueSubCategoryPresenter, revenueSubCategoryPresenter)
         setupCategoryRecyclerList()
 
-        layout_revenue_sub_category_toolbar.text_view_toolbar_title.text = "Revenue Sub Category"
+        layout_revenue_sub_category_toolbar.text_view_toolbar_title.text = getString(R.string.revenue_sub_category)
         layout_revenue_sub_category_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
 
         button_revenue_sub_category_add.setOnClickListener { revenueSubCategoryPresenter.onAddClick() }
@@ -87,7 +87,7 @@ class RevenueSubCategoryFragment : BaseFragment(),
         val mDialogView = LayoutInflater.from(context).inflate(R.layout.fragment_dialog_sub_category_create, null)
         val mBuilder = AlertDialog.Builder(context)
             .setView(mDialogView)
-            .setTitle("Create sub category")
+            .setTitle(getString(R.string.sub_category_create))
         alertDialog = mBuilder.show()
         mDialogView.button_dialog_sub_category_create_save.setOnClickListener {
             revenueSubCategoryPresenter.onSaveClick(
@@ -99,9 +99,9 @@ class RevenueSubCategoryFragment : BaseFragment(),
     override fun showRemoveSubCategoryDialog(name: String, position: Int) {
         val context = context ?: return
         val mBuilder = AlertDialog.Builder(context)
-            .setTitle("Remove sub category")
-            .setPositiveButton("Cancel") { dialog, _ -> dialog?.dismiss() }
-            .setNegativeButton("Delete") { _, _ -> revenueSubCategoryPresenter.onDeleteClick(position) }
+            .setTitle(getString(R.string.sub_category_delete))
+            .setPositiveButton(getString(R.string.cancel)) { dialog, _ -> dialog?.dismiss() }
+            .setNegativeButton(getString(R.string.delete)) { _, _ -> revenueSubCategoryPresenter.onDeleteClick(position) }
         alertDialog = mBuilder.show()
     }
 

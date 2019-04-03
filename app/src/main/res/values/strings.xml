@@ -157,5 +157,23 @@
         15. \t<b>R.Y.L. - group</b> reserves the right at any time to completely or partially restrict User access to the application services without giving a reason.\n\n
 
         16. \t<b>R.Y.L. - group</b> is not responsible for the actions of the user in the application and for their consequences.\n</string>
+    <string name="sub_category_create_title">Введите имя категории</string>
+    <string name="all_save">Сохранить</string>
+    <string name="sub_category_name_hint">Название</string>
+    <string name="revenue_sub_category">Подкатегории расходов</string>
+    <string name="sub_category_create">Создать подкатегорию</string>
+    <string name="sub_category_delete">Удалить подкатегорию</string>
+    <string name="cancel">Отмена</string>
+    <string name="delete">Удалить</string>
+    <string name="zero">0</string>
+    <string name="input_add">Добавить</string>
+    <string name="private_policy_agreement">Я принимаю условия политики конфиденциальности</string>
+    <string name="private_policy_get_started">Начать</string>
+    <string name="money_box_percent">Процент:</string>
+    <string name="fin_independency_result_title">Приблизительная дата когда Вы будете финансово независимы</string>
+    <string name="price_per_work_hour_description">Приблизительная минимальная сумма которую Вы должны зарабатывать в час</string>
+    <string name="write_us_title">Напишите нам если у вас есть предложения, комментарии к нашему приложению и мы Вам обязательно ответим</string>
+    <string name="write_us_message_hint">Напишите сообщение</string>
+    <string name="write_us_send">Отправить</string>
 
 </resources>

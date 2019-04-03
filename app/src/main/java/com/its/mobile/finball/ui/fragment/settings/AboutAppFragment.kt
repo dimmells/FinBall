@@ -22,7 +22,7 @@ class AboutAppFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        layout_about_app_toolbar.text_view_toolbar_title.text = "About App"
+        layout_about_app_toolbar.text_view_toolbar_title.text = getString(R.string.setting_about_app)
         layout_about_app_toolbar.button_toolbar_back.setOnClickListener { fragmentManager?.popBackStack() }
     }
 }

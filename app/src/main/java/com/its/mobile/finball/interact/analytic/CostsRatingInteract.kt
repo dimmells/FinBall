@@ -2,7 +2,6 @@ package com.its.mobile.finball.interact.analytic
 
 import com.its.mobile.finball.data.category.CostsCategoryManager
 import com.its.mobile.finball.data.database.costs.CostsDBManager
-import com.its.mobile.finball.data.database.costs.CostsEntity
 
 class CostsRatingInteract(
     private val costsDBManager: CostsDBManager,

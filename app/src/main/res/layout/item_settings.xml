@@ -1,64 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="wrap_content"
                                              android:clickable="true"
                                              android:focusable="true"
-                                             android:foreground="?android:attr/selectableItemBackground"
                                              android:paddingStart="16dp"
-                                             android:paddingEnd="16dp"
-                                             tools:targetApi="m">
+                                             android:paddingEnd="16dp">
 
     <View
-        android:id="@+id/view_settings_item_top_div"
-        android:layout_width="0dp"
-        android:layout_height="1px"
-        android:background="#e1e1e1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/text_view_setting_item_title"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/view_settings_item_top_div"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="#e1e1e1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text_view_setting_item_title"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
     <ImageView
-        android:id="@+id/image_view_setting_item_icon"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/text_view_setting_item_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/image_view_setting_item_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/text_view_setting_item_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
     <TextView
-        android:id="@+id/text_view_setting_item_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:gravity="start"
-        android:textAlignment="viewStart"
-        android:textColor="#1c1e20"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="@id/image_view_setting_item_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image_view_setting_item_icon"
-        app:layout_constraintTop_toTopOf="@id/image_view_setting_item_icon" />
+            android:id="@+id/text_view_setting_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="start"
+            android:textAlignment="viewStart"
+            android:textColor="#1c1e20"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@id/image_view_setting_item_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_view_setting_item_icon"
+            app:layout_constraintTop_toTopOf="@id/image_view_setting_item_icon"/>
 
     <View
-        android:id="@+id/view_settings_item_bottom_div"
-        android:layout_width="0dp"
-        android:layout_height="1px"
-        android:background="#e1e1e1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/text_view_setting_item_title" />
+            android:id="@+id/view_settings_item_bottom_div"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="#e1e1e1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text_view_setting_item_title"/>
 
 
 </android.support.constraint.ConstraintLayout>
