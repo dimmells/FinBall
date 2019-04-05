@@ -13,7 +13,10 @@ class CostsCategoryModule {
 
     @Provides
     @ViewScope
-    fun provideCostsCategoryInteract(costsCategoryManager: CostsCategoryManager, costsDBManager: CostsDBManager): CostsCategoryInteract =
+    fun provideCostsCategoryInteract(
+        costsCategoryManager: CostsCategoryManager,
+        costsDBManager: CostsDBManager
+    ): CostsCategoryInteract =
         CostsCategoryInteract(costsCategoryManager, costsDBManager)
 
     @Provides

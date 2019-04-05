@@ -14,7 +14,11 @@ class MenuModule {
 
     @Provides
     @ViewScope
-    fun provideMenuInteract(costsDBManager: CostsDBManager, revenueDBManager: RevenueDBManager, context: Context): MenuInteract = MenuInteract(costsDBManager, revenueDBManager, context)
+    fun provideMenuInteract(
+        costsDBManager: CostsDBManager,
+        revenueDBManager: RevenueDBManager,
+        context: Context
+    ): MenuInteract = MenuInteract(costsDBManager, revenueDBManager, context)
 
     @Provides
     @ViewScope

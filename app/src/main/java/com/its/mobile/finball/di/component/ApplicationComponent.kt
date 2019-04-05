@@ -35,7 +35,8 @@ import dagger.Component
         CostsCategoryManagerModule::class,
         DatabaseModule::class,
         SettingPropertiesModule::class,
-        SettingManagerModule::class
+        SettingManagerModule::class,
+        UserServiceModule::class
     ]
 )
 @ApplicationScope

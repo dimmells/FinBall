@@ -11,5 +11,4 @@ object SettingItem {
     const val ABOUT_APP = "about_app"
     const val SUBSCRIPTION = "subscription"
     const val LOCK = "lock"
-    const val IS_NEW_USER = "is_new_user"
 }

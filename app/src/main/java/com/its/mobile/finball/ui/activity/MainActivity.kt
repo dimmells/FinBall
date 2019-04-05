@@ -5,11 +5,15 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.its.mobile.finball.R
 import com.its.mobile.finball.data.notifications.NotificationPublisher
 import com.its.mobile.finball.di.ApplicationLoader
@@ -32,6 +36,12 @@ import com.its.mobile.finball.ui.navigation.PrivacyPolicyRouter
 
 class MainActivity : BaseActivity(), MainView, MainRouter, PrivacyPolicyRouter {
 
+    companion object {
+        private const val REQUEST_GOOGLE_SIGN_IN = 1
+    }
+
+    private var mGoogleSignInClient: GoogleSignInClient? = null
+
     @InjectPresenter
     lateinit var mainPresenter: MainPresenter
 
@@ -43,6 +53,16 @@ class MainActivity : BaseActivity(), MainView, MainRouter, PrivacyPolicyRouter {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
+
+    override fun showGoogleAuthorization() {
+        mainPresenter.saveGoogleSignInToken(null)
+        mGoogleSignInClient = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(resources.getString(R.string.google_auth_service_key))
+            .requestEmail()
+            .build()
+            .let { GoogleSignIn.getClient(this, it) }
+            .apply { startActivityForResult(signInIntent, REQUEST_GOOGLE_SIGN_IN) }
     }
 
     override fun navigateToMenu() {
@@ -96,8 +116,21 @@ class MainActivity : BaseActivity(), MainView, MainRouter, PrivacyPolicyRouter {
         val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60 * 1000, pendingIntent)
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60 * 60 * 1000, pendingIntent)
     }
 
     override fun onPrivacyPolicyConfirmed() = mainPresenter.onPrivatePolicyConfirmed()
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            REQUEST_GOOGLE_SIGN_IN ->
+                try {
+                    mainPresenter.saveGoogleSignInToken(GoogleSignIn.getSignedInAccountFromIntent(data).result?.idToken)
+                } catch (e: Exception) {
+
+                }
+        }
+    }
 }

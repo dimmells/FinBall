@@ -46,5 +46,6 @@ class DatabaseModule {
 
     @Provides
     @ApplicationScope
-    fun provideSubCategoryDBManager(subCategoryDao: SubCategoryDao): SubCategoryDBManager = SubCategoryDBManager(subCategoryDao)
+    fun provideSubCategoryDBManager(subCategoryDao: SubCategoryDao): SubCategoryDBManager =
+        SubCategoryDBManager(subCategoryDao)
 }

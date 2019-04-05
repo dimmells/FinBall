@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -62,5 +64,14 @@ dependencies {
 
     //JSON
     implementation "com.google.code.gson:gson:2.8.2"
+
+    //Google
+    implementation "com.google.android.gms:play-services-auth:16.0.1"
+
+    //Firebase
+    implementation "com.google.firebase:firebase-core:16.0.8"
+
+    //Billing
+    implementation "com.android.billingclient:billing:1.2"
 
 }

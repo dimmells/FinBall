@@ -12,5 +12,6 @@ class SettingManagerModule {
 
     @Provides
     @ApplicationScope
-    fun provideSettingManager(settingRxProperties: SettingRxProperties, context: Context): SettingManager = SettingManager(settingRxProperties, context)
+    fun provideSettingManager(settingRxProperties: SettingRxProperties, context: Context): SettingManager =
+        SettingManager(settingRxProperties, context)
 }

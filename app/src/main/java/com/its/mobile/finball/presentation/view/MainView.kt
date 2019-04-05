@@ -13,4 +13,7 @@ interface MainView : BaseMvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun navigateToIntro()
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun showGoogleAuthorization()
 }

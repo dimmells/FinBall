@@ -8,8 +8,7 @@ class SettingPropertiesDataStore(private val sharedPreferences: SharedPreference
     private val properties = arrayOf(
         SettingProperty(SettingItem.NOTIFICATIONS, true),
         SettingProperty(SettingItem.NOTIFICATIONS_SOUND, true),
-        SettingProperty(SettingItem.RATE_APP, 1),
-        SettingProperty(SettingItem.IS_NEW_USER, true)
+        SettingProperty(SettingItem.RATE_APP, 1)
     )
 
     fun load(): MutableMap<String, Any> {

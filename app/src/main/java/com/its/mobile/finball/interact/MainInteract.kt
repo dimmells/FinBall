@@ -1,18 +1,17 @@
 package com.its.mobile.finball.interact
 
-import com.its.mobile.finball.data.setting.SettingManager
-import com.its.mobile.finball.data.setting.SettingProperty
-import com.its.mobile.finball.ui.item.SettingItem
+import com.its.mobile.finball.data.user.UserService
+import io.reactivex.Completable
 
-class MainInteract(private val settingManager: SettingManager) {
+class MainInteract(private val userService: UserService) {
 
-    fun isNewUser(): Boolean =
-        settingManager.getProperties()
-            .firstOrError()
-            .map { it[SettingItem.IS_NEW_USER] as Boolean }
-            .blockingGet()
+    fun isUserAuthorized(): Boolean = userService.getUserEntity().googleSignInToken != null
 
-    fun updateUserStatus() {
-        settingManager.setProperty(SettingProperty(SettingItem.IS_NEW_USER, false))
+    fun isNewUser(): Boolean = userService.getUserEntity().isNewUser
+
+    fun updateUserStatus(isNewUser: Boolean) {
+        userService.updateUserStatus(isNewUser).subscribe()
     }
+
+    fun saveGoogleSignInToken(token: String?): Completable = userService.saveGoogleSignInToken(token)
 }

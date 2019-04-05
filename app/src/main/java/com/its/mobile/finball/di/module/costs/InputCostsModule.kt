@@ -13,7 +13,10 @@ class InputCostsModule {
 
     @Provides
     @ViewScope
-    fun provideInputCostsInteract(costsCategoryManager: CostsCategoryManager, costsDBManager: CostsDBManager): InputCostsInteract =
+    fun provideInputCostsInteract(
+        costsCategoryManager: CostsCategoryManager,
+        costsDBManager: CostsDBManager
+    ): InputCostsInteract =
         InputCostsInteract(costsCategoryManager, costsDBManager)
 
     @Provides

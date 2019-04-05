@@ -16,7 +16,8 @@ class SettingPropertiesModule {
     @Provides
     @ApplicationScope
     @SettingPropertiesQualifier
-    fun provideSharedPreferences(context: Context): SharedPreferences = context.getSharedPreferences(SPItem.SETTING_PROPERTY, Context.MODE_PRIVATE)
+    fun provideSharedPreferences(context: Context): SharedPreferences =
+        context.getSharedPreferences(SPItem.SETTING_PROPERTY, Context.MODE_PRIVATE)
 
     @Provides
     @ApplicationScope
@@ -25,7 +26,8 @@ class SettingPropertiesModule {
 
     @Provides
     @ApplicationScope
-    fun provideRxProperties(settingPropertiesDataStore: SettingPropertiesDataStore): SettingRxProperties = SettingRxProperties(settingPropertiesDataStore)
+    fun provideRxProperties(settingPropertiesDataStore: SettingPropertiesDataStore): SettingRxProperties =
+        SettingRxProperties(settingPropertiesDataStore)
 }
 
 @Qualifier

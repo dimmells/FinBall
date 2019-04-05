@@ -13,7 +13,10 @@ class MonthDiagramModule {
 
     @Provides
     @ViewScope
-    fun provideMonthDiagramInteract(revenueDBManager: RevenueDBManager, costsDBManager: CostsDBManager): MonthDiagramInteract =
+    fun provideMonthDiagramInteract(
+        revenueDBManager: RevenueDBManager,
+        costsDBManager: CostsDBManager
+    ): MonthDiagramInteract =
         MonthDiagramInteract(revenueDBManager, costsDBManager)
 
     @Provides

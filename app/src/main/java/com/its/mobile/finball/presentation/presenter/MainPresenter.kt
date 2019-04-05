@@ -17,7 +17,12 @@ class MainPresenter(private val mainInteract: MainInteract) : BaseMvpPresenter<M
     }
 
     fun onPrivatePolicyConfirmed() {
-        mainInteract.updateUserStatus()
+        mainInteract.updateUserStatus(false)
+        if (!mainInteract.isUserAuthorized())
+            viewState.showGoogleAuthorization()
         viewState.navigateToMenu()
     }
+
+    fun saveGoogleSignInToken(token: String?) = mainInteract.saveGoogleSignInToken(token)
+        .subscribe()
 }

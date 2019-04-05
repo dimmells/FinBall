@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "466815021440",
+    "firebase_url": "https://finball-1554454645483.firebaseio.com",
+    "project_id": "finball-1554454645483",
+    "storage_bucket": "finball-1554454645483.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466815021440:android:99fff75018b4e9d4",
+        "android_client_info": {
+          "package_name": "com.its.mobile.finball"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466815021440-r62jb789e5jubj4uo6hpm2obeu2m15h0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.its.mobile.finball",
+            "certificate_hash": "77f76cfa62e5a6e6776786f95d2ff4ea25ba7b42"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUnLCT9iBZdhGd5B4tLZ_d3yZPG96FjBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466815021440-hqaaviv7eonulgk91p4faj65t0tu1015.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

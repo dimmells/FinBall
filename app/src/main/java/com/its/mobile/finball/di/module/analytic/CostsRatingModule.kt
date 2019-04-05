@@ -13,7 +13,10 @@ class CostsRatingModule {
 
     @Provides
     @ViewScope
-    fun provideCostsRatingInteract(costsDBManager: CostsDBManager, costsCategoryManager: CostsCategoryManager): CostsRatingInteract =
+    fun provideCostsRatingInteract(
+        costsDBManager: CostsDBManager,
+        costsCategoryManager: CostsCategoryManager
+    ): CostsRatingInteract =
         CostsRatingInteract(costsDBManager, costsCategoryManager)
 
     @Provides
