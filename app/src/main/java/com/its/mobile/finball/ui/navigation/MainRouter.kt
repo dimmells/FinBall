@@ -23,4 +23,6 @@ interface MainRouter: BaseRouter {
     fun navigateToWriteUs()
 
     fun navigateToIntro()
+
+    fun navigateToSubscriptionsShop()
 }

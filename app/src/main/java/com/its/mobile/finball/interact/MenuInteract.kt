@@ -6,13 +6,15 @@ import com.its.mobile.finball.data.database.costs.CostsDBManager
 import com.its.mobile.finball.data.database.costs.CostsEntity
 import com.its.mobile.finball.data.database.revenue.RevenueDBManager
 import com.its.mobile.finball.data.database.revenue.RevenueEntity
+import com.its.mobile.finball.data.user.UserManager
 import io.reactivex.Single
 import java.util.*
 
 class MenuInteract(
     private val costsDBManager: CostsDBManager,
     private val revenueDBManager: RevenueDBManager,
-    private val context: Context
+    private val context: Context,
+    private val userManager: UserManager
 ) {
 
     fun getMonthCosts(): Single<List<CostsEntity>> {
@@ -49,8 +51,8 @@ class MenuInteract(
         return revenueDBManager.getBetweenDates(from, to)
     }
 
-    fun getQuoteArray(): Array<String> = context.resources.getStringArray(R.array.quote)
+    fun getQuoteArray(): Array<String> = if (userManager.userEntity.isUserSubscriptionActive) context.resources.getStringArray(R.array.quote) else arrayOf("NO", "NO")
 
-    fun getQuoteAuthorArray(): Array<String> = context.resources.getStringArray(R.array.quote_author)
+    fun getQuoteAuthorArray(): Array<String> = if (userManager.userEntity.isUserSubscriptionActive) context.resources.getStringArray(R.array.quote_author) else arrayOf("NO", "NO")
 
 }

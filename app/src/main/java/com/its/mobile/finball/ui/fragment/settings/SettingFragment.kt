@@ -173,4 +173,6 @@ class SettingFragment : BaseFragment(), SettingView {
     override fun navigateToAboutApp() = (router as MainRouter).navigateToAboutApp()
 
     override fun navigateToWriteUs() = (router as MainRouter).navigateToWriteUs()
+
+    override fun navigateToSubscriptionsShop() = (router as MainRouter).navigateToSubscriptionsShop()
 }

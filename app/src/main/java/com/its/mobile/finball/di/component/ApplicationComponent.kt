@@ -36,7 +36,8 @@ import dagger.Component
         DatabaseModule::class,
         SettingPropertiesModule::class,
         SettingManagerModule::class,
-        UserServiceModule::class
+        UserServiceModule::class,
+        BillingManagerModule::class
     ]
 )
 @ApplicationScope
@@ -79,6 +80,8 @@ interface ApplicationComponent {
     fun privatePolicyComponent(privatePolicyModule: PrivatePolicyModule): PrivatePolicyComponent
 
     fun introSlideComponent(introSlideModule: IntroSlideModule): IntroSlideComponent
+
+    fun subscriptionsShopComponent(subscriptionsShopModule: SubscriptionsShopModule): SubscriptionsShopComponent
 
 }
 

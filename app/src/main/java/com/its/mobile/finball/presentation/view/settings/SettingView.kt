@@ -39,4 +39,7 @@ interface SettingView: BaseMvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun navigateToWriteUs()
 
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun navigateToSubscriptionsShop()
+
 }

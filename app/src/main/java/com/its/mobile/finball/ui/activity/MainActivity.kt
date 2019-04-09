@@ -90,6 +90,8 @@ class MainActivity : BaseActivity(), MainView, MainRouter, PrivacyPolicyRouter {
 
     override fun navigateToIntro() = setFragment(IntroPagerFragment.newInstance(), false)
 
+    override fun navigateToSubscriptionsShop() = setFragment(SubscriptionsShopFragment.newInstance(), true, true)
+
     private fun setFragment(fragment: Fragment, addToBackStack: Boolean, menuAnimation: Boolean = false) {
         supportFragmentManager.beginTransaction()
             .apply {
